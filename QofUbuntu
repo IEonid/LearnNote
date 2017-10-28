@@ -1,0 +1,5 @@
+Ubuntu /boot 空间剩余不足
+$ df  %查看磁盘剩余空间
+$ dpkg --get-selections |grep linux-image　%查看系统内核版本
+$ uname -a　%查看最新内核
+$ sudo apt-get purge linux-image-4.4.0-72-generic　%移除内核
