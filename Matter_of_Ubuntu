@@ -4,7 +4,6 @@ S:	$ df  %查看磁盘剩余空间
 	$ uname -a　%查看最新内核
 	$ sudo apt-get purge linux-image-4.4.0-72-generic　%移除内核
 
-
 M: Ubuntu shows "swapper/0 Not Tained ..." when boot.
 S: 	1) restart and choose "Advanced opetions for Ubuntu"
 	2) choose the last "Linux --- generic" 
