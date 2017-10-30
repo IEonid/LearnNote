@@ -49,6 +49,7 @@ open the website and set the public key, you can use the command to get the cont
 	$ git branck branchName  创建新分支
 	$ git checkout branckName  切换到指定分支
 	$ git branch  列出／创建／删除分支
+	$ git branch -r 列出远程分支
 	$ git checkout master  切换回master分支
 	$ git merge branchName  合并指定分支
 	$ git branck -d branchName  删除指定分支
@@ -64,8 +65,11 @@ open the website and set the public key, you can use the command to get the cont
 　　　　$ git stash apply stash@{0} & git stash drop 　恢复现场和清空保护区
 　　　 $ git stash pop  恢复现场并清空保护区
 
+16、build the local dev branch 
+	$ git checkout --track  origin/dev
+	$ git checkout -b dev origin/dev
 
-16、dev branch
+dev branch
     feature branches
 
 
