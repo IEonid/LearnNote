@@ -69,6 +69,15 @@ open the website and set the public key, you can use the command to get the cont
 	$ git checkout --track  origin/dev
 	$ git checkout -b dev origin/dev
 
+17、$ git tag tagName  对最新提交创建标签
+    $ git tag  显示所有标签
+    $ git tag tagName commit_id  对commit_id版本创建标签
+    $ git show tagName  根据标签显示对象
+    $ git tag -a tagName -m "COMMIT" commit_id  创建带有说明的标签
+    $ git tag -d tagName 删除标签
+    $ git push origin tagName|--tags  推送本地标签到远程仓库
+    $ git push origin :refs/tags/tagName  先删除本地标签,再删除远程标签
+
 dev branch
     feature branches
 
