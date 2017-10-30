@@ -4,6 +4,9 @@
 2、configure git
 	$ git config --global user.name "cglin"
 	$ git config --global user.email "cglin95@gmail.com"
+	$ git config --global color.ui true
+	$ git config --global alias.st status
+	$ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 
 3、creat repository
 	$ cd ~/cglinGit
@@ -78,11 +81,10 @@ open the website and set the public key, you can use the command to get the cont
     $ git push origin tagName|--tags  推送本地标签到远程仓库
     $ git push origin :refs/tags/tagName  先删除本地标签,再删除远程标签
 
-dev branch
+18、dev branch
     feature branches
 
-
-9、git --help
+19、git --help
    add        添加文件内容至索引
    bisect     通过二分查找定位引入 bug 的变更
    branch     列出、创建或删除分支--
@@ -104,3 +106,16 @@ dev branch
    show       显示各种类型的对象
    status     显示工作区状态
    tag        创建、列出、删除或校验一个 GPG 签名的标签对象
+
+20、build a Git server
+	$ sudo apt-get install git
+	$ sudo adduser git
+	收集所有需要登录的用户的公钥,就是他们自己的id_rsa.pub文件,把所有公钥导入到/home/git/.ssh/authorized_keys文件里,一行一个。
+	先选定一个目录作为Git仓库,假定是/srv/sample.git,在/srv目录下输入命令:
+	$ sudo git init --bare sample.git
+	$ sudo chown -R git:git sample.git
+	编辑/etc/passwd文件
+	找到类似下面的一行:git:x:1001:1001:,,,:/home/git:/bin/bash
+	改为:git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
+	现在,可以通过 git clone 命令克隆远程仓库了,在各自的电脑上运行:
+	$ git clone git@server:/srv/sample.git
