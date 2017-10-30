@@ -1,0 +1,93 @@
+1、install git
+	$ sudo apt-get install git
+
+2、configure git
+	$ git config --global user.name "cglin"
+	$ git config --global user.email "cglin95@gmail.com"
+
+3、creat repository
+	$ cd ~/cglinGit
+	$ git init
+
+4、put the file into repository
+	$ git add readme.txt  可反复多次使用用,添加多个文文件
+	$ git commit -m "wrote a readme file"
+
+5、$ git status　　显示仓库当前的状态
+   $ git diff readme.txt
+   $ git diff HEAD -- readme.txt  查看工作区和版本库里面最新版本的区别
+   $ git log (--pretty=oneline)
+
+6、$ git reset --hard HEAD^  回退到上一个版本
+　　　$ cat readme.txt  查看文件内容
+   $ git reflog  显示所有命令记录
+　　　$ git reset --hard commit_id  回退到某一个版本
+   $ git checkout -- readme.txt  丢弃工作区的修改
+　　　$ git reset HEAD readme.txt  将暂存区的修改放回工作区
+
+７、if you want to $ rm readme.txt,
+   $ git rm readme.txt  从版本库删除
+   $ git checkout -- readme.txt　　从版本库恢复
+
+8、creat a ssh key for remote repository
+	$ ssh-keygen -t rsa -C "cglin95@gmail.com"
+open the website and set the public key, you can use the command to get the content:
+	$ cat ~/.ssh/id_rsa.pub 
+
+9、connect the romete repository and the local repository
+	$ git remote add origin https://github.com/IEonid/Matter_of_Ubuntu.git
+
+10、first time to submit the repository
+	$ git push -u origin master
+
+11、clone a repository from remote
+	$ git clone git@github.com:IEonid/gitskills.git (ssh protocol)
+	$ git clone https://github.com/IEonid/gitskills.git (https protocol)
+
+12、branch　and merge
+	$ git checkout -b branchName  创建并切换到新分支
+	$ git branck branchName  创建新分支
+	$ git checkout branckName  切换到指定分支
+	$ git branch  列出／创建／删除分支
+	$ git checkout master  切换回master分支
+	$ git merge branchName  合并指定分支
+	$ git branck -d branchName  删除指定分支
+
+13、show the gragh of branch and merge
+	$ git log --graph --pretty=oneline --abbrev-commit
+
+14、merge with --no-ff
+	$ git merge --no-ff -m "merge with --no-ff" dev
+
+15、$ git stash  保护当前工作现场
+　　　　$ git stash list  列出保护名单
+　　　　$ git stash apply stash@{0} & git stash drop 　恢复现场和清空保护区
+　　　 $ git stash pop  恢复现场并清空保护区
+
+
+16、dev branch
+    feature branches
+
+
+9、git --help
+   add        添加文件内容至索引
+   bisect     通过二分查找定位引入 bug 的变更
+   branch     列出、创建或删除分支--
+   checkout   检出一个分支或路径到工作区
+   clone      克隆一个仓库到一个新目录
+   commit     记录变更到仓库
+   diff       显示提交之间、提交和工作区之间等的差异
+   fetch      从另外一个仓库下载对象和引用
+   grep       输出和模式匹配的行
+   init       创建一个空的 Git 仓库或重新初始化一个已存在的仓库
+   log        显示提交日志
+   merge      合并两个或更多开发历史
+   mv         移动或重命名一个文件、目录或符号链接
+   pull       获取并整合另外的仓库或一个本地分支
+   push       更新远程引用和相关的对象
+   rebase     本地提交转移至更新后的上游分支中
+   reset      重置当前 HEAD 到指定状态
+   rm         从工作区和索引中删除文件
+   show       显示各种类型的对象
+   status     显示工作区状态
+   tag        创建、列出、删除或校验一个 GPG 签名的标签对象
