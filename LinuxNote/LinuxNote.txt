@@ -10,9 +10,22 @@
 	$ ls -F -R  列出递归目录
 	$ ls -l  列出长列表
 	$ ls -l --time=atime fileName  列出文件访问时间
+	$ ls -i (fileName)  列出文件和目录的inode编号
 	$ touch emptyFileName  新建空文档
-	$ cp -i source destination  复制文档(-i 询问是否覆盖)
-	$ cp -R fileName/ desFile  复制文件夹中所有文档
+	$ cp -i source destination  复制文档或目录(-i 询问是否覆盖)
+	$ cp -R fileName/ desFile  复制目录中所有文档
+	$ ln -s fileName sLinkName  为文件创建符号链接
+	$ ln fileName hLinkName  为文件创建硬链接
+	$ mv -i source destination  移动文件或重命名(-i 询问是否覆盖)
+	$ mkdir -p dirName  创建目录及其父目录
+	$ rmdir -ri dirName  递归删除目录并询问
+	$ rmdir -FR  删除目录及其所有内容
+	$ file [fileName or dirName]  查看文档类型
+	$ cat -n fileName  行号显示文档
+	$ cat -b fileName  不显示空行行号
+	$ [more or less] fileName  分页浏览文件内容
+	$ tail -n 2 fileName  浏览文件后两行
+	$ head -5 fileName  浏览文件前5行
 
 3) 扩展内容:
 	文件扩展匹配?, *, [ai], [a-i], [!a]
