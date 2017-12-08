@@ -29,3 +29,20 @@
 
 3) 扩展内容:
 	文件扩展匹配?, *, [ai], [a-i], [!a]
+
+4) 基本配置：
+	(更新系统软件)
+	$ sudo apt-get update --fix-missing
+	$ sudo apt-get update
+	$ sudo apt-get upgrade
+	（安装Jupyter）
+	$ sudo apt-get update
+	$ sudo apt install python-pip
+	$ sudo pip install --upgrade pip
+	$ sudo apt install python-numpy
+	$ sudo apt install python-scipy
+	$ sudo apt install python-matplotlib
+	$ sudo pip install -U pip
+	$ sudo pip install jupyter
+	$ jupyter notebook
+
