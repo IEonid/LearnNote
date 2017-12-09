@@ -35,7 +35,12 @@
 	$ sudo apt-get update --fix-missing
 	$ sudo apt-get update
 	$ sudo apt-get upgrade
-	（安装Jupyter）
+	(安装Pycharm)
+	$ sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make
+	$ sudo apt-get update
+	$ sudo apt-get install ubuntu-make
+	$ umake ide pycharm
+	(安装Jupyter)
 	$ sudo apt-get update
 	$ sudo apt install python-pip
 	$ sudo pip install --upgrade pip
