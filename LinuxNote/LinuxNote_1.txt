@@ -1,0 +1,22 @@
+sort (fileName)  按文件每一行首个字符排序
+	-n (fileName) 把数字识别成数字（而不是字符）后排序
+grep [options] pattern (fileName)  在文件中对pattern进行匹配
+	-v 反向搜索
+	-n 显示行号
+	-c 统计有多少行匹配
+gzip (fileName)  压缩指定文件
+gunzip (fileName)  解压指定压缩包
+tar function [options] object1 object2...
+	-cvf (tarname).tar taredFileName1 taredFileName2...  创建归档文档
+	-tf (tarName).tar  列出压缩包的内容
+	-xvf (tarName).tar  解压.tar压缩包
+	-zxvf (tarName).tgz  解压.tgz压缩包
+sleep 30&  命令末尾加上字符&，表示将命令置入后台模式
+(tar ...; tar...)&  将进程列表置入后台模式
+jobs  查看后台模式中的所有用户的进程
+history 显示命令历史记录, !!可以调用最近的一个命令, ![num]调用该编号命令
+	-a 强制写入命令历史记录
+alias newName='Commands'  为常用命令创建别名
+	-p 查看别名列表
+shell分为内建指令和外部指令。外部指令会创建出一个包含全新环境的子进程，而内建指令则不会。
+相比之下，外部指令的使用成本更高。内建指令不需要创建新环境，不会受到环境变化的影响。

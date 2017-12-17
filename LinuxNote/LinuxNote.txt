@@ -1,8 +1,9 @@
 1) 基本概念: Linux系统内核采用VFS虚拟文件系统
 	GNU/Linux shell多数为bash, 又称为Bourne again shell
 	$ echo $SHELL
-	GNOME, Unity, KDE终端仿真器为GNOME Terminal CLI
 	Ubuntu桌面环境为Unity
+	GNOME, Unity, KDE终端仿真器为GNOME Terminal CLI
+	$ lsb_release -a 显示系统代号，版本号
 
 2) 基本操作: Ctrl+Alt+F[1-7]  进入虚拟控制台
 	$ setterm -inversescreen on
@@ -26,6 +27,10 @@
 	$ [more or less] fileName  分页浏览文件内容
 	$ tail -n 2 fileName  浏览文件后两行
 	$ head -5 fileName  浏览文件前5行
+	$ ps -aux; sudo kill (PID_NUM)  显示和终止进程
+	$ ps -f  显示完整格式的输出
+	$ ps --forest  展示了子Shell间的嵌套结构
+	$ df -h  显示磁盘剩余空间大小
 
 3) 扩展内容:
 	文件扩展匹配?, *, [ai], [a-i], [!a]
