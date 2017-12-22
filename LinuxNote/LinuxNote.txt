@@ -55,4 +55,7 @@
 	$ sudo pip install -U pip
 	$ sudo pip install jupyter
 	$ jupyter notebook
-
+	(安装截图软件shutter)
+	$ sudo add-apt-repository ppa:shutter/ppa
+	$ sudo apt-get update
+	$ sudo apt-get install shutter 之后在系统设置中设置快捷键
