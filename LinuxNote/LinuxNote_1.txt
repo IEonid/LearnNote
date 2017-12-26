@@ -16,16 +16,58 @@ sleep 30&  命令末尾加上字符&，表示将命令置入后台模式
 jobs  查看后台模式中的所有用户的进程
 history 显示命令历史记录, !!可以调用最近的一个命令, ![num]调用该编号命令
 	-a 强制写入命令历史记录
-alias newName='Commands'  为常用命令创建别名
+alias newName='Commands'  为常用命令创建别名,如$ alias ipconfig='ifconfig'
 	-p 查看别名列表
+unalias aliasName 删除别名
 shell分为内建指令和外部指令。外部指令会创建出一个包含全新环境的子进程，而内建指令则不会。
 相比之下，外部指令的使用成本更高。内建指令不需要创建新环境，不会受到环境变化的影响。
 
-
+[Linux环境变量]
 printenv <HOME>列出全局环境变量,可列出某个全局环境变量
 export localVarible 将局部变量导入到全局环境中,修改或删除子shell中全局变量不会影响父shell的变量
 unset envVarible 删除环境变量
 echo $HOME 显示全局或局部环境变量,局部变量只对所在进程可见
 ls $HOME 列出HOME目录下的文件
 PATH=$PATH:/home/bin 添加可执行文件的路径
-SHOME/.bashrc 可以将环境变量持久化
+$HOME/.bashrc文件 可以将环境变量持久化
+
+[Linux文件权限]
+$ cat /etc/passwd
+用户名:密码:UID:GID:备注字段:用户HOME目录的位置:用户默认的shell
+$ cat /ect/shadow 文件对Linux系统密码进行加密管理,只有root用户能访问
+useradd -D 查看添加新用户默认设置
+useradd -m userName (root)创建新用户并为其创建HOME目录
+userdel -r userName (root)删除用户及其HOME目录
+passwd userName (root)改变用户密码
+$ cat /etc/group
+groupadd groupName 创建组
+usermod -G groupName userName 为组设置用户
+groupmod -n newGroupName oldGroupName 修改组名
+umask 显示默认文件权限掩码
+umsak 002 设置默认文件权限掩码
+文件的全权限为666,目录的全权限为777
+chmod -R [---] fileName 递归地修改文件权限
+chown -R owner[.group] fileName 递归地修改文件的属主或默认属组
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
