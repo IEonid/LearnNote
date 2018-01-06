@@ -1,4 +1,5 @@
-1) 基本概念: Linux系统内核采用VFS虚拟文件系统
+1) 基本概念: Linux系统内核采用VFS虚拟文件系统作为和每个文件系统交互的接口
+	ext2(扩展文件系统)在系统崩溃时未能及时更新索引节点表，容易损坏
 	GNU/Linux shell多数为bash, 又称为Bourne again shell
 	$ echo $SHELL
 	Ubuntu桌面环境为Unity

@@ -44,13 +44,19 @@ groupadd groupName 创建组
 usermod -G groupName userName 为组设置用户
 groupmod -n newGroupName oldGroupName 修改组名
 umask 显示默认文件权限掩码
-umsak 002 设置默认文件权限掩码
+umask 002 设置默认文件权限掩码
 文件的全权限为666,目录的全权限为777
 chmod -R [---] fileName 递归地修改文件权限
 chown -R owner[.group] fileName 递归地修改文件的属主或默认属组
 
-
-
+PMS(Package Management System) tools:dpkg, apt-get, apt-cache, aptitude
+aptitude show [packageName] 显示软件包的详细信息
+aptitude search [packageNae] 在软件仓库中查找包(i:已安装)
+aptitude install [packageName] 安装软件包
+sudo aptitude safe-upgrade 将已安装的软件包更新到软件仓库的最新版本
+sudo aptitude remove [packageName] 删除软件包而不删除数据和配置文件
+sudo aptitude purge [packageName] 删除软件包并删除数据和配置文件
+aptitude默认的软件仓库位置是/etc/apt/sources.list中
 
 
 
