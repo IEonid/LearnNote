@@ -1,0 +1,17 @@
+: No module named 'numpy'(win7-64-PyCharm)
+    NumPy函数库是Python开发环境的一个独立模块，而且大多数Python发行版没有默认安装NumPy数据库，
+    1.下载NumPy数据库
+		下载地址：https://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy
+		根据自己安装的python版本和操作系统选择安装包
+		例如我的使Python2.7，64位操作系统，选择numpy-1.11.3+mkl-cp27-cp27m-win_amd64.whl
+	2.安装
+		1）将下载的安装包拷贝在Python安装目录下C:\Python27\Scripts
+		2）将Scripts这个文件夹的地址拷贝下来，然后“右击计算机-属性-高级系统设置-环境变量-系统变量-path-编辑它”
+			将刚才的路径粘贴进去。
+		3）进入DOS，输入pip版本号 install +numpy的路径+文件名
+			例如我的是pip2.7 install C:\Python27\Scripts\numpy-1.11.3+mkl-cp27-cp27m-win_amd64.whl
+		4）安装成功就会提示successfully installed
+		5）在PyCharm中修改工程解释器
+			打开PyCharm->File->Settings->Project->Project Interpreter->...
+		
+Pycharm本身缺少numpy和matplotlib这些库，而另一个Python的开发环境Anaconda则自带了300多种常见的库。
