@@ -22,11 +22,11 @@
    $ git log (--pretty=oneline)
 
 6、$ git reset --hard HEAD^  回退到上一个版本
-　　　$ cat readme.txt  查看文件内容
+　 $ cat readme.txt  查看文件内容
    $ git reflog  显示所有命令记录
-　　　$ git reset --hard commit_id  回退到某一个版本
+　 $ git reset --hard commit_id  回退到某一个版本
    $ git checkout -- readme.txt  丢弃工作区的修改
-　　　$ git reset HEAD readme.txt  将暂存区的修改放回工作区
+　 $ git reset HEAD readme.txt  将暂存区的修改放回工作区
 
 ７、if you want to $ rm readme.txt,
    $ git rm readme.txt  从版本库删除
@@ -34,11 +34,14 @@
 
 8、creat a ssh key for remote repository
 	$ ssh-keygen -t rsa -C "cglin95@gmail.com"
-open the website and set the public key, you can use the command to get the content:
+    open the website and set the public key, you can use the command to get the content:
 	$ cat ~/.ssh/id_rsa.pub 
 
 9、connect the romete repository and the local repository
 	$ git remote add origin https://github.com/IEonid/Matter_of_Ubuntu.git
+	$ git remote  列出远程库列表
+	$ git remote -h  查看帮助菜单
+	$ git remote remove [remoteName] 删除远程库
 
 10、first time to submit the repository
 	$ git push -u origin master
@@ -64,9 +67,9 @@ open the website and set the public key, you can use the command to get the cont
 	$ git merge --no-ff -m "merge with --no-ff" dev
 
 15、$ git stash  保护当前工作现场
-　　　　$ git stash list  列出保护名单
-　　　　$ git stash apply stash@{0} & git stash drop 　恢复现场和清空保护区
-　　　 $ git stash pop  恢复现场并清空保护区
+　　$ git stash list  列出保护名单
+　　$ git stash apply stash@{0} & git stash drop 　恢复现场和清空保护区
+　　$ git stash pop  恢复现场并清空保护区
 
 16、build the local dev branch 
 	$ git checkout --track  origin/dev

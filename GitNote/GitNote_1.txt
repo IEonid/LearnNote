@@ -1,0 +1,5 @@
+1、update local repository from remote repository
+	$ git fetch origin master:temp
+	$ git diff temp
+	$ git merge temp
+	$ git branch -d temp
