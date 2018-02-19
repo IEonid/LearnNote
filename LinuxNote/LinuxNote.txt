@@ -35,6 +35,7 @@
 
 3) 扩展内容:
 	文件扩展匹配?, *, [ai], [a-i], [!a]
+	分号;可以将命令拼在同一行
 
 4) 基本配置：
 	(更新系统软件)
@@ -61,3 +62,5 @@
 	$ sudo apt-get update
 	$ sudo apt-get install shutter
 	之后在系统设置中设置快捷键命令（shutter -s）
+	(安装vim)
+	sudo apt-get install vim

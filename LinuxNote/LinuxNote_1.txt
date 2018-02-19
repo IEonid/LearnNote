@@ -58,22 +58,22 @@ sudo aptitude remove [packageName] 删除软件包而不删除数据和配置文
 sudo aptitude purge [packageName] 删除软件包并删除数据和配置文件
 aptitude默认的软件仓库位置是/etc/apt/sources.list中
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+vim fileName 用vim编辑器打开文件,进入普通模式
+i键进入插入模式,R键进入替换模式,Esc退出插入或替换模式,v键切换可视模式
+普通模式下:方位向键和h,j,k,l键控制方向
+	Ctrl+B向上翻页,Ctrl+F向下翻页
+	gg将光标移动到缓冲区第一行,G将光标移动到缓冲区最后一行
+	[Num]+G 将光标移动到第[Num]行
+	x 删除当前光标所在位置的字符,删除的字符存储在剪切板上
+	dd 删除当前光标所在行
+	u 撤销前一编辑命令
+	Ctrl+r 重做被撤销的命令
+	v->[choose]->y->p 复制和粘贴
+	v->[choose]->x->p 剪切和粘贴
+	/[text] 查找字符串,按n键跳至下一个匹配位置
+	:s/[old]/[new]/g 替换所有字符串
+退出vim指令:q 如果未修改缓冲区数据,退出
+	:q! 取消对缓冲区的修改并退出
+	:w 将缓冲区保存到另一个文件中
+	:wq 将缓冲区数据保存到文件并退出
 
