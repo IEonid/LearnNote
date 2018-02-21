@@ -2,14 +2,14 @@
 #A script to update the repository
 
 git status
-options=[Add/Commit/Diff/Exit/Log/Push/Status]
+options=[Add/Commit/Diff/Exit/Log/Push/User/Status]
 while echo -e -n "\n\nPlease choose the first letter of options.\n$options? "
 	read -n1 choice
 do
 	echo -e "\n"
 	case $choice in
 	A | a)
-		git add *;;
+		git add * ;;
 	C | c)
 		echo -e -n "\n Enter the remark: "
 		read commit
@@ -25,6 +25,10 @@ do
 		git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit;;
 	P | p)
 	        git push origin master;;
+	U | u)
+		echo -e -n ">>"
+		read myCmd
+		$myCmd;;
 	S | s)
 		git status;;
 	*)
