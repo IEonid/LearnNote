@@ -1,0 +1,9 @@
+[命令行参数,选项,用户输入]
+$0程序名 $1第一个参数... $#参数个数 ${!#}最后一个参数 $*参数整体 $@参数列表
+$(basename $0)可返回不含路径的脚本程序名
+shift NUM 把参数向左移动NUM位
+read获得用户输入:
+eg1):	if read -t 5 -p "Enter your name: " name
+eg2):	read -n1 -p "Download[Y/y]? " answer
+eg3):	read -s -p "Enter your password: " passwd
+read从文件中获取数据常用cat+管道方法: cat test.txt | while read line	
