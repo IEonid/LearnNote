@@ -2,48 +2,37 @@
 #A script to update the repository
 
 git status
-until read -p "-- Are you sure to add all file [Y/D/N]? " choice
-	case $choice in
-	Y | y)
-		git add *;;
-	D | d)
-		git diff HEAD -- *
-		exit 1;;
-	N | n)
-		exit 0;;
-	*)
-		echo "Error input"
-		exit 1;;
-	esac
+options=[Add/Commit/Diff/Exit/Log/Push/User/Status]
+while echo -e -n "\n\nPlease choose the first letter of options.\n$options? "
+	read -n1 choice
 do
-	exit 0
+	echo -e "\n"
+	case $choice in
+	A | a)
+		git add *;;
+	C | c)
+		echo -e -n "\n Enter the remark: "
+		read commit
+		commitDate="[20"$(date +%y-%m-%d])
+		commit=$commitDate$commit
+		echo $commit
+		git commit -m "$commit";;
+	D | d)
+		git diff HEAD -- *;;
+	E | e)
+		echo -e "\n"
+		exit 0;;
+	L | l)
+		git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit;;
+	P | p)
+	        git push origin master;;
+	S | s)
+		git status;;
+	*)
+		echo
+		echo "Error input"
+		echo;;
+	esac
 done
 
-echo
-git status
-read  -p "-- Are you sure to commit all file [Y/N]? -- " choice
-case $choice in
-Y | y)
-	echo
-	read -p "Enter the commit: " commit
-	git commit -m "$commit";;
-N | n)
-	exit 0;;
-*)
-	echo "Error input";;
-esac
 
-echo
-git status
-read -p "-- Are you sure to push the commition [Y/N]? -- " choice
-case $choice in
-Y | y)
-        git push origin master;;
-N | n)
-        exit 0;;
-*)
-        echo "Error input";;
-esac
-
-echo
-git status
