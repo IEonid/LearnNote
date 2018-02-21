@@ -1,7 +1,51 @@
 shell脚本文件首行指定要使用的shell,格式为:
 	#!/bin/bash
-	#This is a script.
 修改执行权限之后,可以$./fileName直接运行,或者修改$PATH环境变量
 echo " "|' ' 显示自定义文本信息
 echo -n " "|' ' 将自定义文本信息和命令输出显示在同一行,字符串末端要有空格
 字符串中可以使用环境变量和自定义变量
+将命令输出赋值给变量的两种方法:
+	1)temp=`date`
+	2)temp=$(date)
+命令替换会创建一个子shell来运行对应的命令,因而无法使用用户变量
+重定向输入和输出:
+	覆盖输出到文件:[command] > [fileName]
+		eg:today = `date +%y%m%d%H%M%S`
+		   ls /usr/bin -al > log.$today 
+	追加输出到文件:[command] >> [fileName]
+	重定向文件到命令: [command] < [fileName]
+		eg: $wc < [fileName] 显示文本的行数,单词数,字节数
+	内联输入重定向:[command] << [marker]; [data]; [marker]
+管道:[command1] | [command2] 第一个指令的输出通过管道传给第二个命令
+	eg: $ ls /usr/bin -al | sort | more
+整数计算:1)var1=$(expr 5 \* 2) 符号'*'需要转义,否则识别为通配符
+	2)var1=$[5 * 2] 执行数学表达式的简单方法
+bash shell只能处理整数,包括test命令
+浮点运算:$ bc 访问bash计算器, quit退出, scale控制小数位数
+	脚本操作:1)var1=$(echo 'scale=4; 3.44 / 5' | bc)
+		2)var1=$(bc << EOF
+		  scale=4
+		  3.44 / 5
+		  EOF
+		  )
+$ echo $? 退出状态码为0表明命令执行成功了,可以在shell脚本中用exit [num]来声明退出状态码
+
+[结构化命令]
+if-then语句格式:
+	if [command]; then
+		[command]
+	...elif [command]; then (嵌套if-then)
+		...[command]
+	...else
+		...[command]
+	fi
+if-then语句测试状态码外的条件
+	1) if test [condition]
+	2) if [ condition ]  (注意空格)
+	3) [condition1] && [condition2]
+	4) [condition1] || [condition2]
+数值比较: -eq -ne -ge -gt -le -lt
+字符串比较: = != \>(转义,否则识别为重定向) \< -n(放在字符串前,测试是否长度非零) -z
+文件比较: -d -e -f -r -s -w -x -O -G (file1 -nt file2) (file1 -ot file2)
+
+

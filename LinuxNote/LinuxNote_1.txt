@@ -23,7 +23,7 @@ shell分为内建指令和外部指令。外部指令会创建出一个包含全
 相比之下，外部指令的使用成本更高。内建指令不需要创建新环境，不会受到环境变化的影响。
 
 [Linux环境变量]
-printenv <HOME>列出全局环境变量,可列出某个全局环境变量
+printenv [HOME]列出全局环境变量,可列出某个全局环境变量
 export localVarible 将局部变量导入到全局环境中,修改或删除子shell中全局变量不会影响父shell的变量
 unset envVarible 删除环境变量
 echo $HOME 显示全局或局部环境变量,局部变量只对所在进程可见
