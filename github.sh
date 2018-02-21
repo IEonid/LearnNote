@@ -2,7 +2,7 @@
 #A script to update the repository
 
 git status
-options=[Add/Commit/Diff/Exit/Log/Push/User/Status]
+options=[Add/Commit/Diff/Exit/Log/Push/Status]
 while echo -e -n "\n\nPlease choose the first letter of options.\n$options? "
 	read -n1 choice
 do
@@ -20,7 +20,6 @@ do
 	D | d)
 		git diff HEAD -- *;;
 	E | e)
-		echo -e "\n"
 		exit 0;;
 	L | l)
 		git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit;;
