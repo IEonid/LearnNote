@@ -3,3 +3,8 @@
 	$ git diff temp
 	$ git merge temp
 	$ git branch -d temp
+
+2、require password after adding ssh-key
+	reason: clone with https protocol
+	resolution: $ vim .git/config
+		change the [HTTPS-WEB] to [SSH-WEB]
