@@ -1,2 +1,7 @@
 TIOBE编程语言排行榜：
 https://www.tiobe.com/tiobe-index/
+
+概率机器人PPT下载
+http://probabilistic-robotics.informatik.uni-freiburg.de/ppt/
+概率机器人动画示例
+http://robots.stanford.edu/videos.html
