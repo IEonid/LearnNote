@@ -3,3 +3,18 @@ ros官网教程：http://wiki.ros.org/ROS/Tutorials
 YouTube视频教程：https://www.youtube.com/watch?v=DBFYZRMLr70&list=PLK0b4e05LnzaOZxQt0OwMRwIa8ysYG9_a
 古月居教程：http://www.guyuehome.com/tag/ros
 创客智造：http://www.ncnynl.com/archives/201702/1371.html
+
+http://wiki.ros.org/ROS/Tutorials
+% 20个ROS教程，包括版本选择，安装和使用
+
+http://blog.exbot.net/page/2?s=%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FROS+Indigo+%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0
+% 易科机器人实验室_机器人操作系统ROS Indigo 入门学习
+
+http://wiki.ros.org/indigo/Installation/Ubuntu
+% Ubuntu14.04 安装ros-Indigo
+
+http://wiki.ros.org/kinetic/Installation/Ubuntu
+http://www.cnblogs.com/liu-fa/p/5779206.html
+% ROS不能再详细的安装教程 Ubuntu16.04 安装Kinetic
+
+

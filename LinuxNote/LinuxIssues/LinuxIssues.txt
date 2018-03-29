@@ -10,3 +10,7 @@ S: 	1) restart and choose "Advanced opetions for Ubuntu"
 
 M:文件在Windows 下编辑过，在Windows下每一行结尾是\n\r，而Linux下则是\n
 S:	$ sed -i 's/\r$//' [FILENAME]
+
+M: Windows与Ubuntu双系统时间同步问题:
+S:	http://blog.csdn.net/gatieme/article/details/51883981
+	$ sudo vim /etc/default/rcS
