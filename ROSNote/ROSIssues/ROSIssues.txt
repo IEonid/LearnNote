@@ -1,0 +1,11 @@
+M: 初始化ROS时可能会找不到rosdep命令
+S:	$ sudo apt install python-rosdep
+
+
+M: rplidar.launch is neither a launch file in package...
+S：	$ source ./catkin_ws/devel/setup.bash
+	% You will need to run this command on every new shell you open to have access to the ROS commands, unless you add this line to your .bashrc. 
+	% This process allows you to install several ROS distributions (e.g. indigo and kinetic) on the same computer and switch between them.
+	% To make sure your workspace is properly overlayed by the setup script, make sure ROS_PACKAGE_PATH environment variable includes the directory you're in.
+	% $ echo $ROS_PACKAGE_PATH
+	% /home/youruser/catkin_ws/src:/opt/ros/kinetic/share

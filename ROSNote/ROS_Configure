@@ -1,6 +1,0 @@
-将ROS的配置脚本加入.bashrc文件中
-$ echo "source /opt/ros/indigo/setup.bash" >> ~/.bashrc
-$ source ~/.bashrc
-
-安装ROS工具
-$ sudo apt-get install python-rosinstall python-rosdep

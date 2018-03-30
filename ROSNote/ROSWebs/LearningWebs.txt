@@ -17,4 +17,22 @@ http://wiki.ros.org/kinetic/Installation/Ubuntu
 http://www.cnblogs.com/liu-fa/p/5779206.html
 % ROS不能再详细的安装教程 Ubuntu16.04 安装Kinetic
 
+﻿https://blog.csdn.net/zhangrelay/article/details/49401881
+http://lib.csdn.net/article/robot/62824
+http://wiki.ros.org/Robots/Husky
 
+文件：DARwin-OP on the ROS
+Note:Gazebo可先不装
+
+
+http://www.rosclub.cn/post/39
+% 安装gazebo
+
+
+http://www.generationrobots.com/en/content/75-gazebo-and-ros
+% Gazebo robotics simulator with ROS tutorial
+
+
+http://www.ros.org/news/2015/02/darwin-op-package-for-rosgazebo-available.html	%3 packages for simulating the Darwin OP robot on Gazebo
+http://blog.csdn.net/u013166794/article/details/51212255
+% 博客Darwin_gazebo Simulation Demo

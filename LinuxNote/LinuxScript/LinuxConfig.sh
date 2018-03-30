@@ -36,7 +36,7 @@ read -n1 -t10 user_choice
 echo -e "\n"
 if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
 	sudo apt-get install vim
-	echo -e -n "\033[01;36mInstalled Vim...... \033[0m \n"
+	echo -e -n "\033[01;36mInstalled Vim... \033[0m \n"
 fi
 
 #(安装vncviewer)
@@ -45,7 +45,16 @@ read -n1 -t10 user_choice
 echo -e "\n"
 if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
 	sudo apt-get install vncviewer
-	echo -e -n "\033[01;36mInstalled vncviewer...... \033[0m \n"
+	echo -e -n "\033[01;36mInstalled vncviewer... \033[0m \n"
+fi
+
+#(安装okular阅读器)
+echo -e -n "\033[01;36mAre you sure to install okular[Y/N] \033[0m "
+read -n1 -t10 user_choice
+echo -e "\n"
+if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
+	sudo apt install okular
+	echo -e -n "\033[01;36mInstalled okular... \033[0m \n"
 fi
 
 #(安装Pycharm)
