@@ -142,6 +142,18 @@ if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
 	echo -e -n "\033[01;36mRequire reboot the computer... \033[0m \n"
 fi
 
+
+#(安装桌面主题软件unity-tweak-tool)
+echo -e -n "\033[01;36mAre you sure to install unity-tweak-tool[Y/N] \033[0m "
+read -n1 -t10 user_choice
+echo -e "\n"
+if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
+	sudo apt-get install  unity-tweak-tool
+	#之后在Dash中查找unity tweak tool设置桌面主题
+	echo -e -n "\033[01;36mInstalled unity-tweak-tool... \033[0m \n"
+fi	
+
+
 #(安装截图软件shutter)
 echo -e -n "\033[01;36mAre you sure to install shutter[Y/N] \033[0m "
 read -n1 -t10 user_choice
