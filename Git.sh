@@ -23,7 +23,9 @@ do
 		exit 0;;
 	F | f)
 		git fetch origin master:origin_master
-		git diff origin_master
+		git checkout origin_master
+		git diff master
+		git checkout master
 		echo -e -n "\033[01;36mAre you sure to merge with origin_master[Y/N] \033[0m "
 		read -n1 merge_choice
 		echo -e "\n"
