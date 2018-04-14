@@ -143,6 +143,20 @@ if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
 fi
 
 
+#(与Windows同步时间)
+echo -e -n "\033[01;36mAre you sure to synchronise time with Windows[Y/N] \033[0m "
+read -n1 -t10 user_choice
+echo -e "\n"
+if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
+	sudo apt-get install ntpdate
+	sudo ntpdate time.windows.com
+	sudo hwclock --localtime --systohc
+	echo -e -n "\033[01;36mSynchronised time with Windows... \033[0m \n"
+fi	
+
+
+
+
 #(安装桌面主题软件unity-tweak-tool)
 echo -e -n "\033[01;36mAre you sure to install unity-tweak-tool[Y/N] \033[0m "
 read -n1 -t10 user_choice

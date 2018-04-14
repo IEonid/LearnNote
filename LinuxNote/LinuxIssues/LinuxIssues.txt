@@ -12,5 +12,10 @@ M:文件在Windows 下编辑过，在Windows下每一行结尾是\n\r，而Linux
 S:	$ sed -i 's/\r$//' [FILENAME]
 
 M: Windows与Ubuntu双系统时间同步问题:
-S:	http://blog.csdn.net/gatieme/article/details/51883981
+S:	---For Ubuntu14.04---
+	http://blog.csdn.net/gatieme/article/details/51883981
 	$ sudo vim /etc/default/rcS
+	---For Ubuntu16.04---
+	$ sudo apt-get install ntpdate
+	$ sudo ntpdate time.windows.com
+	$ sudo hwclock --localtime --systohc
