@@ -1,5 +1,5 @@
 #!/bin/bash
-#A script to creat the catkin_ws
+#A script to creat the catkin_ws（工作空间）
 
 #Adapt to ubuntu16.04
 
@@ -10,13 +10,13 @@ echo -e "\n"
 if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
 	mkdir -p ~/catkin_ws/src
 	cd ~/catkin_ws/src
+	#生成CMakeLists.txt
 	catkin_init_workspace
 	cd ~/catkin_ws
 	catkin_make
 	source devel/setup.bash
+	echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 	echo -e -n "\033[01;36mInited catkin_ws... \033[0m "
-	#请手动在./bashrc中添加‘source ~/catkin_ws/devel/setup.bash’
-	echo -e -n "\033[01;36mPlease add 'source ~/catkin_ws/devel/setup.bash' in ~/.bashrc... \033[0m "
 	echo -e "\n"
 fi
 
