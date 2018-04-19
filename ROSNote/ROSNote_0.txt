@@ -36,7 +36,7 @@ $ rosservice uri <service> %输出服务的ROSRPC URI
 $ rosmsg list
 $ rosmsg info <message>
 $ rosmsg show <message>
-$ rosmsg <package> %列出包中的所有消息
+$ rosmsg package <package> %列出包中的所有消息
 $ rosmsg packages <message> %列出具有该消息的所有包
 
   rospack -h

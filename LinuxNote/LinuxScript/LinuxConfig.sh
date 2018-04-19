@@ -177,6 +177,16 @@ if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
 fi
 
 
+#(安装 ssh)
+echo -e -n "\033[01;36mAre you sure to install ssh[Y/N] \033[0m "
+read -n1 -t10 user_choice
+echo -e "\n"
+if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
+	sudo apt-get install ssh
+	echo -e -n "\033[01;36mInstalled ssh... \033[0m \n"
+fi
+
+
 #(安装 teamviewer)
 echo -e -n "\033[01;36mMake sure that there is a *.deb file. \033[0m \n"
 echo -e -n "\033[01;36mAre you sure to install teamviewer[Y/N] \033[0m "
