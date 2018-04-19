@@ -26,6 +26,14 @@ rosdep update
 echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 
+#(安装 RoboWareStudio)
+echo -e -n "\033[01;36mMake sure that there is a *.deb file. \033[0m \n"
+echo -e -n "\033[01;36mAre you sure to install RoboWareStudio[Y/N] \033[0m "
+read -n1 -t10 user_choice
+echo -e "\n"
+if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
+	sudo dpkg -i roboware-studio_1.1.0-1514335284_amd64.deb
+fi
 
 
 
