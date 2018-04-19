@@ -1,6 +1,5 @@
 #!/bin/bash
 #A script to configurate the Linux
-
 #Adapt to ubuntu16.04
 
 #(更新系统软件列表和软件)
@@ -15,7 +14,32 @@ if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
 	echo -e "\n"
 fi
 
-#(安装Git)
+
+#(安装 Eclipse)
+echo -e -n "\033[01;36mMake sure that there is a ./eclipse-inst-linux64.tar.gz. \033[0m \n"
+echo -e -n "\033[01;36mAre you sure to install Eclipse[Y/N] \033[0m "
+read -n1 -t10 user_choice
+echo -e "\n"
+if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
+	tar -zxvf eclipse-inst-linux64.tar.gz
+	cd ./eclipse-installer && ./eclipse-inst
+	sudo touch /usr/share/applications/eclipse.desktop
+	sudo echo "[Desktop Entry]
+	Encoding=UTF-8
+	Name=Eclipse Platfrom
+	Comment=Eclipse IDE
+	Exec=/home/dxy/eclipse/java-oxygen/eclipse/eclipse
+	Icon=/home/dxy/eclipse/java-oxygen/eclipse/icon.xpm
+	Terminal=false
+	StartupNotify=true
+	Type=Application
+	Categories=Application;Development;" >> /usr/share/applications/eclipse.desktop
+	chmod u+x /usr/share/applications/eclipse.desktop
+	echo -e -n "\033[01;36mInstalled Eclipse... \033[0m \n"
+fi	
+
+
+#(安装 Git)
 echo -e -n "\033[01;36mAre you sure to install Git[Y/N] \033[0m "
 read -n1 -t10 user_choice
 echo -e "\n"
@@ -30,46 +54,8 @@ if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
 	echo -e -n "\033[01;36mConfiged Git's user.email as $userEmail... \033[0m \n"
 fi
 
-#(安装vim)
-echo -e -n "\033[01;36mAre you sure to install Vim[Y/N] \033[0m "
-read -n1 -t10 user_choice
-echo -e "\n"
-if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
-	sudo apt-get install vim
-	echo -e -n "\033[01;36mInstalled Vim... \033[0m \n"
-fi
 
-#(安装vncviewer)
-echo -e -n "\033[01;36mAre you sure to install vncviewer[Y/N] \033[0m "
-read -n1 -t10 user_choice
-echo -e "\n"
-if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
-	sudo apt-get install vncviewer
-	echo -e -n "\033[01;36mInstalled vncviewer... \033[0m \n"
-fi
-
-#(安装okular阅读器)
-echo -e -n "\033[01;36mAre you sure to install okular[Y/N] \033[0m "
-read -n1 -t10 user_choice
-echo -e "\n"
-if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
-	sudo apt install okular
-	echo -e -n "\033[01;36mInstalled okular... \033[0m \n"
-fi
-
-#(安装Pycharm)
-echo -e -n "\033[01;36mAre you sure to install pycharm[Y/N] \033[0m "
-read -n1 -t10 user_choice
-echo -e "\n"
-if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
-	sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make
-	sudo apt-get update
-	sudo apt-get install ubuntu-make
-	umake ide pycharm
-	echo -e -n "\033[01;36mInstalled pycharm... \033[0m \n"
-fi
-
-#(安装Jupyter)
+#(安装 Jupyter)
 echo -e -n "\033[01;36mAre you sure to install jupyter[Y/N] \033[0m "
 read -n1 -t10 user_choice
 echo -e "\n"
@@ -86,34 +72,30 @@ if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
 	echo -e -n "\033[01;36mInstalled jupyter... \033[0m \n"
 fi	
 
-#(安装teamviewer)
-echo -e -n "\033[01;36mMake sure that there is a *.deb file. \033[0m \n"
-echo -e -n "\033[01;36mAre you sure to install teamviewer[Y/N] \033[0m "
+
+#(安装 notepadqq)
+echo -e -n "\033[01;36mAre you sure to install notepadqq[Y/N] \033[0m "
 read -n1 -t10 user_choice
 echo -e "\n"
 if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
-	read -p "Please input the fileName >> " fileName
-	sudo apt-get install libdbus-1-3:i386 libasound2:i386 libexpat1:i386 libfontconfig1:i386 libfreetype6:i386 libjpeg62:i386 libpng12-0:i386 libsm6:i386 libxdamage1:i386 libxext6:i386 libxfixes3:i386 libxinerama1:i386 libxrandr2:i386 libxrender1:i386 libxtst6:i386 zlib1g:i386 libc6:i386 qml-module-qtquick-dialogs qml-module-qtquick-controls qtdeclarative5-controls-plugin
+	sudo add-apt-repository ppa:notepadqq-team/notepadqq
 	sudo apt-get update
-	sudo apt-get -f install
-	sudo dpkg -i $fileName
-	echo -e -n "\033[01;36mInstalled teamviewer... \033[0m \n"
+	sudo apt-get install notepadqq
+	echo -e -n "\033[01;36mInstalled notepadqq... \033[0m \n"
 fi
 
-#(安装Qt)
-echo -e -n "\033[01;36mMake sure that there is a *.run file. \033[0m \n"
-echo -e -n "\033[01;36mAre you sure to install Qt[Y/N] \033[0m "
+
+#(安装 okular 阅读器)
+echo -e -n "\033[01;36mAre you sure to install okular[Y/N] \033[0m "
 read -n1 -t10 user_choice
 echo -e "\n"
 if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
-	read -p "Please input the fileName >> " fileName
-	sudo apt-get install g++
-	sudo chmod u+x $fileName
-	./$fileName
-	echo -e -n "\033[01;36mInstalled Qt... \033[0m \n"
+	sudo apt install okular
+	echo -e -n "\033[01;36mInstalled okular... \033[0m \n"
 fi
 
-#(安装OpenCV-2.4.11)
+
+#(安装 OpenCV-2.4.11)
 echo -e -n "\033[01;36mMake sure that there is a ./opencv-2.4.11 directory. \033[0m \n"
 echo -e -n "\033[01;36mAre you sure to install OpenCV-2.4.11[Y/N] \033[0m "
 read -n1 -t10 user_choice
@@ -143,42 +125,34 @@ if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
 fi
 
 
-#(与Windows同步时间)
-echo -e -n "\033[01;36mAre you sure to synchronise time with Windows[Y/N] \033[0m "
+#(安装 Pycharm)
+echo -e -n "\033[01;36mAre you sure to install pycharm[Y/N] \033[0m "
 read -n1 -t10 user_choice
 echo -e "\n"
 if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
-	sudo apt-get install ntpdate
-	sudo ntpdate time.windows.com
-	sudo hwclock --localtime --systohc
-	echo -e -n "\033[01;36mSynchronised time with Windows... \033[0m \n"
-fi	
-
-
-#(安装notepad++)
-echo -e -n "\033[01;36mAre you sure to install notepadqq[Y/N] \033[0m "
-read -n1 -t10 user_choice
-echo -e "\n"
-if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
-	sudo add-apt-repository ppa:notepadqq-team/notepadqq
+	sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make
 	sudo apt-get update
-	sudo apt-get install notepadqq
-	echo -e -n "\033[01;36mInstalled notepadqq... \033[0m \n"
+	sudo apt-get install ubuntu-make
+	umake ide pycharm
+	echo -e -n "\033[01;36mInstalled pycharm... \033[0m \n"
 fi
 
 
-#(安装桌面主题软件unity-tweak-tool)
-echo -e -n "\033[01;36mAre you sure to install unity-tweak-tool[Y/N] \033[0m "
+#(安装 Qt)
+echo -e -n "\033[01;36mMake sure that there is a *.run file. \033[0m \n"
+echo -e -n "\033[01;36mAre you sure to install Qt[Y/N] \033[0m "
 read -n1 -t10 user_choice
 echo -e "\n"
 if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
-	sudo apt-get install  unity-tweak-tool
-	#之后在Dash中查找unity tweak tool设置桌面主题
-	echo -e -n "\033[01;36mInstalled unity-tweak-tool... \033[0m \n"
-fi	
+	read -p "Please input the fileName >> " fileName
+	sudo apt-get install g++
+	sudo chmod u+x $fileName
+	./$fileName
+	echo -e -n "\033[01;36mInstalled Qt... \033[0m \n"
+fi
 
 
-#(安装截图软件shutter)
+#(安装截图软件 shutter)
 echo -e -n "\033[01;36mAre you sure to install shutter[Y/N] \033[0m "
 read -n1 -t10 user_choice
 echo -e "\n"
@@ -188,4 +162,51 @@ if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
 	sudo apt-get install shutter
 	#之后在系统设置中设置快捷键命令（shutter -s）
 	echo -e -n "\033[01;36mInstalled shutter, please set your shortcut later[shutter -s]. \033[0m \n"
-fi	
+fi
+
+
+#(Snchronise Time with Windows)
+echo -e -n "\033[01;36mAre you sure to synchronise time with Windows[Y/N] \033[0m "
+read -n1 -t10 user_choice
+echo -e "\n"
+if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
+	sudo apt-get install ntpdate
+	sudo ntpdate time.windows.com
+	sudo hwclock --localtime --systohc
+	echo -e -n "\033[01;36mSynchronised time with Windows... \033[0m \n"
+fi
+
+
+#(安装 teamviewer)
+echo -e -n "\033[01;36mMake sure that there is a *.deb file. \033[0m \n"
+echo -e -n "\033[01;36mAre you sure to install teamviewer[Y/N] \033[0m "
+read -n1 -t10 user_choice
+echo -e "\n"
+if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
+	read -p "Please input the fileName >> " fileName
+	sudo apt-get install libdbus-1-3:i386 libasound2:i386 libexpat1:i386 libfontconfig1:i386 libfreetype6:i386 libjpeg62:i386 libpng12-0:i386 libsm6:i386 libxdamage1:i386 libxext6:i386 libxfixes3:i386 libxinerama1:i386 libxrandr2:i386 libxrender1:i386 libxtst6:i386 zlib1g:i386 libc6:i386 qml-module-qtquick-dialogs qml-module-qtquick-controls qtdeclarative5-controls-plugin
+	sudo apt-get update
+	sudo apt-get -f install
+	sudo dpkg -i $fileName
+	echo -e -n "\033[01;36mInstalled teamviewer... \033[0m \n"
+fi
+
+
+#(安装 vim)
+echo -e -n "\033[01;36mAre you sure to install Vim[Y/N] \033[0m "
+read -n1 -t10 user_choice
+echo -e "\n"
+if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
+	sudo apt-get install vim
+	echo -e -n "\033[01;36mInstalled Vim... \033[0m \n"
+fi
+
+
+#(安装 vncviewer)
+echo -e -n "\033[01;36mAre you sure to install vncviewer[Y/N] \033[0m "
+read -n1 -t10 user_choice
+echo -e "\n"
+if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
+	sudo apt-get install vncviewer
+	echo -e -n "\033[01;36mInstalled vncviewer... \033[0m \n"
+fi
