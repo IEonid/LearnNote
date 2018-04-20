@@ -71,5 +71,5 @@ $ sudo apt-get install ros-<distro>-rqt-common-plugins
 $ rosrun rqt_reconfigure rqt_reconfigure %参数动态配置
 $ rosrun rqt_graph rqt_graph
 $ rosrun rqt_plot rqt_plot
-$ rosrun rqt_console rqt_console
+$ (rosrun rqt_console) rqt_console
 $ rosrun rqt_logger_level rqt_logger_level
