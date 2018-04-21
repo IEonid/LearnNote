@@ -9,6 +9,7 @@ echo -e "\n"
 if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
 	sudo apt-get update
 	sudo apt-get update --fix-missing
+	sudo apt-get -f install
 	sudo apt-get upgrade
 	echo -e -n "\033[01;36mUpdated and upgraded OS... \033[0m "
 	echo -e "\n"
@@ -138,6 +139,20 @@ if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
 fi
 
 
+#(安装 QQ)
+echo -e -n "\033[01;36mMake sure that there is a wineQQ8.9_19990.tar.xz file. \033[0m \n"
+echo -e -n "\033[01;36mAre you sure to install QQ[Y/N] \033[0m "
+read -n1 -t10 user_choice
+echo -e "\n"
+if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
+	sudo add-apt-repository ppa:wine/wine-builds  
+	sudo apt-get update
+	sudo apt-get install winehq-devel
+	tar xvf wineQQ8.9_19990.tar.xz -C ~/
+	echo -e -n "\033[01;36mInstalled QQ... \033[0m \n"
+fi
+
+
 #(安装 Qt)
 echo -e -n "\033[01;36mMake sure that there is a *.run file. \033[0m \n"
 echo -e -n "\033[01;36mAre you sure to install Qt[Y/N] \033[0m "
@@ -219,4 +234,29 @@ echo -e "\n"
 if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
 	sudo apt-get install vncviewer
 	echo -e -n "\033[01;36mInstalled vncviewer... \033[0m \n"
+fi
+
+
+#(安装 Wechat)
+echo -e -n "\033[01;36mMake sure that there is a linux-x64.tar.gz. \033[0m \n"
+echo -e -n "\033[01;36mAre you sure to install Wechat[Y/N] \033[0m "
+read -n1 -t10 user_choice
+echo -e "\n"
+if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
+	sudo tar zxvf linux-x64.tar.gz
+	sudo mv electronic-wechat-linux-x64/ /opt/electronic-wechat-linux-x64
+	sudo ln -s /opt/electronic-wechat-linux-x64/electronic-wechat /usr/bin/electronic-wechat
+	sudo echo "[Desktop Entry]
+	Encoding=UTF-8
+	Version=1.0
+	Type=Application
+	Name=Electronic WeChat
+	Icon=electronic-wechat.png
+	Exec=/opt/electronic-wechat-linux-x64/electronic-wechat
+	StartupNotify=false
+	StartupWMClass=electronic-wechat
+	OnlyShowIn=Unity;
+	X-UnityGenerated=true" >> /usr/share/applications/electronic-wechat.desktop
+	chmod u+x /usr/share/applications/electronic-wechat.desktop
+	echo -e -n "\033[01;36mInstalled Wechat... \033[0m \n"
 fi
