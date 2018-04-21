@@ -2,6 +2,7 @@ ros官网教程：http://wiki.ros.org/ROS/Tutorials
 优酷视频教程：ros小课堂
 YouTube视频教程：https://www.youtube.com/watch?v=DBFYZRMLr70&list=PLK0b4e05LnzaOZxQt0OwMRwIa8ysYG9_a
 古月居教程：http://www.guyuehome.com/tag/ros
+	http://www.guyuehome.com/column/ros-explore
 ->> 创客智造：https://www.ncnynl.com/
 http://www.ncnynl.com/archives/201702/1371.html
 
@@ -25,14 +26,11 @@ http://wiki.ros.org/Robots/Husky
 文件：DARwin-OP on the ROS
 Note:Gazebo可先不装
 
-
 http://www.rosclub.cn/post/39
 % 安装gazebo
 
-
 http://www.generationrobots.com/en/content/75-gazebo-and-ros
 % Gazebo robotics simulator with ROS tutorial
-
 
 http://www.ros.org/news/2015/02/darwin-op-package-for-rosgazebo-available.html	%3 packages for simulating the Darwin OP robot on Gazebo
 http://blog.csdn.net/u013166794/article/details/51212255

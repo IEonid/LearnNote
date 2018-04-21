@@ -1,0 +1,1 @@
+chmod a+x [.cfg] %.cfg文件需要手动修改权限和CMakeList.txt
