@@ -1,1 +1,3 @@
 chmod a+x [.cfg] %.cfg文件需要手动修改权限和CMakeList.txt
+
+节点的可执行文件在工作空间的devel/lib/<package>下

@@ -217,6 +217,16 @@ if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
 fi
 
 
+#(安装 tree)
+echo -e -n "\033[01;36mAre you sure to install tree[Y/N] \033[0m "
+read -n1 -t10 user_choice
+echo -e "\n"
+if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
+	sudo apt-get install tree
+	echo -e -n "\033[01;36mInstalled tree... \033[0m \n"
+fi
+
+
 #(安装 vim)
 echo -e -n "\033[01;36mAre you sure to install Vim[Y/N] \033[0m "
 read -n1 -t10 user_choice
