@@ -39,6 +39,11 @@ $ rosmsg show <message>
 $ rosmsg package <package> %列出包中的所有消息
 $ rosmsg packages <message> %列出具有该消息的所有包
 
+  rosbag -h
+$ rosbag record -a
+$ rosbag info <bag>
+$ rosbag play <bag>
+
   rospack -h
 $ rospack list 
 $ rospack find <package>
@@ -73,3 +78,4 @@ $ rosrun rqt_graph rqt_graph
 $ rosrun rqt_plot rqt_plot
 $ (rosrun rqt_console) rqt_console
 $ rosrun rqt_logger_level rqt_logger_level
+$ rqt_bag <bag>
