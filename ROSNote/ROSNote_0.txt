@@ -79,3 +79,7 @@ $ rosrun rqt_plot rqt_plot
 $ (rosrun rqt_console) rqt_console
 $ rosrun rqt_logger_level rqt_logger_level
 $ rqt_bag <bag>
+
+chmod a+x [.cfg] %.cfg文件需要手动修改权限和CMakeList.txt
+节点的可执行文件在工作空间的devel/lib/<package>下
+<collision>和<inertial>字段对于在Gazebo中运行的模型是必须的

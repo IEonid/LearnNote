@@ -1,2 +1,7 @@
 M: 初始化ROS时可能会找不到rosdep命令
 S:	$ sudo apt install python-rosdep
+
+M: [tcsetpgrp failed in terminal_inferior: Inappropriate ioctl for device]
+S: Please make sure that standalone Gazebo is not running by executing ps ax | grep [g]z.
+    If there is no gzserver and gzclient you are fine. Then try again to launch it from simulator_gazebo 
+	with roslaunch gazebo_worlds empty_world.launch.
