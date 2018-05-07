@@ -6,3 +6,6 @@ https://roscon.ros.org/
 
 Willow Garage网站:
 http://www.willowgarage.com/
+
+ROS所支持的机器人列表
+https://robots.ros.org/

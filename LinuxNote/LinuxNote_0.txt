@@ -38,11 +38,27 @@
 3) 扩展内容:
 	文件扩展匹配?, *, [ai], [a-i], [!a]
 	分号;可以将命令拼在同一行
+	$ nc -l 9992 <[FILE_NAME]  发送端
+	$ nc [IP_ADDRESS] 9992 >[FILE_NAME]  接收端
+	(备份系统与系统恢复)
+	$ cd / && tar cvpzf backup.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup.tgz --exclude=/mnt --exclude=/sys --exclude=/media /
+	如果原来的Ubuntu系统已经崩溃，无法进入。则可以使用Ubuntu安装U盘（live USB）进入试用Ubuntu界面。
+	切换到root用户，找到之前Ubuntu系统的根目录所在磁盘分区（一般电脑上的磁盘分区（假设分区名称为sdaX）
+	均可以在当前Ubuntu系统的根目录下的media目录下（即/media）找到。目录通常为当前根目录下 cd /media/磁盘名称/分区名称）。
+	进入该分区，输入以下指令来删除该根目录下的所有文件：
+	$ sudo rm -rf /media/磁盘名称/分区名称*
+	将备份文件”backup.tgz”拷入该分区；
+	$ sudo cp -i backup.tgz /media/磁盘名/分区名sdaX
+	进入分区并将压缩文件解压缩，参数x是告诉tar程序解压缩备份文件。
+	$ sudo tar xvpfz backup.tgz
+	重新创建那些在备份时被排除在外的目录；
+	$ sudo mkdir proc lost+found mnt sys media
 
 4) 基本配置：
 	(更新系统软件)
 	$ sudo apt-get update --fix-missing
 	$ sudo apt-get update
+	$ sudo apt-get -f install
 	$ sudo apt-get upgrade
 	(安装Pycharm)
 	$ sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make

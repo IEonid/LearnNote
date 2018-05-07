@@ -1,0 +1,3 @@
+$ check_urdf <urdf>
+$ urdf_to_graphiz <urdf>
+$ rosrun xacro xacro.py <xacro> > <urdf>
