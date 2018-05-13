@@ -202,6 +202,20 @@ if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
 fi
 
 
+#(安装 synergy)
+echo -e -n "\033[01;36mMake sure that there is a *.deb file. \033[0m \n"
+echo -e -n "\033[01;36mAre you sure to install synergy[Y/N] \033[0m "
+read -n1 -t10 user_choice
+echo -e "\n"
+if [[ $user_choice == 'y' ]] || [[ $user_choice == 'Y' ]]; then
+	read -p "Please input the fileName >> " fileName
+	sudo dpkg -i $fileName
+	sudo apt-get -f install
+	sudo dpkg -i $fileName
+	echo -e -n "\033[01;36mInstalled synergy... \033[0m \n"
+fi
+
+
 #(安装 teamviewer)
 echo -e -n "\033[01;36mMake sure that there is a *.deb file. \033[0m \n"
 echo -e -n "\033[01;36mAre you sure to install teamviewer[Y/N] \033[0m "

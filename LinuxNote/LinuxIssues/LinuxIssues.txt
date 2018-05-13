@@ -28,3 +28,7 @@ S:	sudo mv /var/lib/dpkg/info /var/lib/dpkg/info_old
 	$ sudo mv /var/lib/dpkg/info/* /var/lib/dpkg/info_old
 	$ sudo rm -rf /var/lib/dpkg/info
 	$ sudo mv /var/lib/dpkg/info_old /var/lib/dpkg/info
+	
+M: dpkg status database is locked by another process
+S: sudo rm /var/lib/dpkg/lock 
+	$ sudo dpkg --configure -a
