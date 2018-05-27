@@ -1,0 +1,12 @@
+$ sudo apt-get install minicom
+$ dmesg | grep usb
+插入CH340-uart转串口
+$ sudo minicom -s
+->Serial port setup->Serial Device: /dev/ttyUSB0
+硬件数据流和软件数据流控制都设置为否
+$ sudo python
+> import serial
+> ser=serial.Serial('/dev/ttyUSB0',9600,timeout=1)
+> x=ser.readline()
+> x
+此时x为接收到的行数据
