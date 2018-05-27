@@ -48,7 +48,7 @@ fi
 
 sudo apt-get install ros-kinetic-map-server
 sudo apt-get install ros-kinetic-fake-localization
-cd ~/catkin_ws & catkin_make
+cd ~/catkin_ws && catkin_make
 #安装ROS功能包与Gazebo通信
 sudo apt-get install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-control
 sudo apt-get install ros-kinetic-teleop-twist-keyboard
