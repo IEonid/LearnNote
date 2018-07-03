@@ -1,2 +1,7 @@
-ORACLE官方网站Java下载
+﻿ORACLE官方网站Java下载
 http://www.oracle.com/technetwork/java/javase/downloads/index.html
+
+ORACLE官方网站在线API文档
+http://www.oracle.com/technetwork/java/index.html
+ORACLE官方网站离线API文档
+https://www.oracle.com/technetwork/java/javase/documentation/jdk10-doc-downloads-4417029.html

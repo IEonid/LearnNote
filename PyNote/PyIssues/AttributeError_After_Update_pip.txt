@@ -1,0 +1,11 @@
+:AttributeError: 'module' object has no attribute 'main'
+	pip升级到 10.0.1 之后 老版的pycharm 使用pip安装第三方库的时候会报错，报错如上所示：
+
+	其主要原因是 新版的 pip 更改了 部分api 将其中 pip.main() 改为 pip_main()，
+
+	旧版的pycharm中 在packaging_tool.py 中引用的就是 pip.main()方法，所以会报错。
+	最简单的、最完美的解决方法为：
+	1.找到pycharm 目录下的 \helper\packaging_tool.py 文件
+	2.用新版pycharm 的packaging_tool.py 替换 旧版 同名文件
+	新版packaging_tool.py文件下载路径为：
+	链接：https://pan.baidu.com/s/1nMIrm5ArlUK6nB1xnJ8ptA 密码：mwzp
