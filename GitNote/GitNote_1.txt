@@ -8,3 +8,4 @@
 	reason: clone with https protocol
 	resolution: $ vim .git/config
 		change the [HTTPS-WEB] to [SSH-WEB]
+
