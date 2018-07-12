@@ -38,7 +38,7 @@ def on_mouse_event(event, x, y, flag, param):
 
 
 if __name__ == '__main__':
-    image = cv.imread("1531293455.jpg")
+    image = cv.imread("43-1.jpg")
     img = image.copy()
     points_num = 0
     points = []
