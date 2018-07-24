@@ -7,6 +7,9 @@
 	$ lsb_release -a 显示系统代号，版本号
 	$ ifconfig 查看IP等信息
 	$ lsusb 查看USB设备
+	$ which ls 列出指令所在文件路径
+	$ top 实时动态查看系统运行情况
+	$ ssh cglin@218.192.172.48 -p 22
 
 2) 基本操作: Ctrl+Alt+F[1-7]  进入虚拟控制台
 	$ setterm -inversescreen on
