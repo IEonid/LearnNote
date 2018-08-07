@@ -1,6 +1,6 @@
 # Python基础教程#
 
-### Chapter1基础知识
+### Chapter1 基础知识
 
     #!/usr/bin/python2.7
     print 'Hello, world!'
@@ -16,18 +16,19 @@
     import cmath  # 复数运算
     cmath.sqrt(-1)
 
-**input() 与 raw_input()**
+#### input() 与 raw_input()
 
 | :-: | :-: |
 | input()     | 假设用户输入的是合法的Python表达式 |
 | raw_input() | 把所有的输入当做原始数据并放入字符串中 |
+python3.0中，raw_input被重命名为input
 
 | :-: | :- |
 |  /  | 除法操作符，当操作符两边都为整数数实现整除 |
 |  // | 整除操作符 |
 |  \  | 转义符 |
 
-**str、repr和反引号是将Python值转成字符串的3种方法**
+#### str、repr和反引号是将Python值转成字符串的3种方法
 
     print "Hello"
     print str("Hello")
@@ -46,7 +47,7 @@
 
 
 
-### Chapter2列表与元组(序列类型)
+### Chapter2 列表与元组(序列类型)
 
 Python中最基本的数据结构是**序列**： **列表、元组**、字符串、Unicode字符串、buffer对象、xrang对象。  
 序列第一个元素索引为0，最后一个元素标记为-1  
@@ -76,7 +77,7 @@ len(序列), max( ), min( )
     # 分片赋值可以用不等长序列将分片替换,也可作插入和删除
     sequence[1:1] = [2, 3, 4]  #在第一个元素插入
 
-**列表方法:对象.方法(参数)**
+#### 列表方法:对象.方法(参数)
 
     seq.append()  # 追加值
     seq.count()  # 统计某元素
@@ -98,7 +99,7 @@ tuple(seq) 将序列转换成元组
 
 
 
-###　Chapter3使用字符串
+### Chapter3 使用字符串
 字符串是不可变的,不能分片赋值  
 字符串格式化操作符: %  
 
@@ -118,7 +119,10 @@ tuple(seq) 将序列转换成元组
     print '%*.*s' % (10, 6, 'Python shell')
 
 符号+，对齐-，0填充或空格填充  
-**字符串方法:**
+chr(97) == 'a'  
+ord('a') == 97
+
+#### 字符串方法:
 
     str.count(str)
     str.find(str,startnum,endnum)  # 查找第一个子串,没有找到返回-1
@@ -131,7 +135,7 @@ tuple(seq) 将序列转换成元组
 
 
 
-### Chapter4字典:当索引不好用时
+### Chapter4 字典:当索引不好用时
 
 dictory = {k1:v1, k2:v2, ...} {}创建字典,字典可以相互嵌套  
 
@@ -148,7 +152,7 @@ dictory = {k1:v1, k2:v2, ...} {}创建字典,字典可以相互嵌套
     phonebook = {'Beth': '9102', 'Alice': '2341'}
     "Alice's phone is %(Alice)s." %phonebook
 
-**字典方法:**
+#### 字典方法:
 
     d.clear()  # 清空原始字典  
     d.copy();  from copy import deepcopy;  deepcopy(d)
@@ -171,50 +175,54 @@ dictory = {k1:v1, k2:v2, ...} {}创建字典,字典可以相互嵌套
 
 
 
-### Chapter5条件,循环和其他语句
-False = 0 None "" () [] {}
-k, v = d.popitem()
-x, y, *z = 1, 2, 3, 4 Python3.0
-x = y = somefunction() 链式赋值
-增量赋值:+= -= *= /= %=
+### Chapter5 条件,循环和其他语句
+False = 0 None "" () [] {}  
+k, v = d.popitem()  
+x, y, *z = 1, 2, 3, 4  # Python3.0 残项赋值  
+x = y = somefunction()  # 链式赋值  
+增量赋值: += -= *= /= %=  
+if --: elif --: else --:  
 
-if --: elif --: else --:
-比较运算符: (除基本的)
-	x is y ;x和y是同一个对象(避免比较数值和字符串)
-	x is not y ;x和y是不同对象(列表,元组,字典)
-	x in y
-	x not in y
-连接比较: 1 <= number <=10
-布尔运算符: and or not
-a if b else c ;如果b为真,返回a,否则,返回c
-$ assert 0 < age < 100, 'The age must be realistic' ;断言
-$ a = ' '; a.isspace()
-range(num1, num2) $range(99,0,-1)
-$ d = {'x':1,'y':2,'z':3}
-	for key, value in d.items():
-   	print key,'corresponds to',value
+#### 比较运算符: (除基本的)
+    x is y  # x和y是同一个对象(避免比较数值和字符串)
+    x is not y  # x和y是不同对象(列表,元组,字典)
+    x in y
+    x not in y
+    
+    1 <= number <=10  # 连接比较  
+    and or not  # 布尔运算符  
+a if b else c  # 如果b为真,返回a,否则,返回c  
+assert 0 < age < 100, 'The age must be realistic'  # 断言  
+a = ' '; a.isspace()  
+range(num1, num2)  range(99,0,-1)  
 
-    %%%%%iter.py%%%%%
+    d = {'x':1,'y':2,'z':3}  
+    for key, value in d.items():  
+    print key,'corresponds to',value  
+
+    ##### 并行迭代 #####
     #!/usr/bin/python2.7
-    name = ['anne','beth','george','damon']
+    names = ['anne','beth','george','damon']
     ages = [12,45,32,102]
-    for i in range(len(name)):
-       print name[i],'is',ages[i],'years old'
-    for name, age in zip(name, ages): 并行迭代
-       print name,'is',age,'years old'__
-    %%%%%iter.py%%%%%
+    for i in range(len(names)):
+       print names[i],'is',ages[i],'years old'
+    for name, age in zip(names, ages):  # 并行迭代
+       print name,'is',age,'years old'
 
-zip()可以作用于任意多的序列,处理不等长序列时用完最短序列则停止
-$ zip(range(5),xrange(100000000))
-$ for index, string in enumerate(sqe): 提供索引-值对
-	if 'xxx' in string:
-		sqe[index] = 'censored'
-跳出循环: break continue
-$ [x*x for x in range(10)] ;列表推导式[]
-$ [x*x for x in range(10) if x%3 == 0]
-$ [(x,y) for x in range(3) for y in range(3)]
 
-    %%%%%match.py%%%%%字典高效匹配
+zip()可以作用于任意多的序列,处理不等长序列时用完最短序列则停止  
+zip(range(5),xrange(100000000))  
+
+    for index, string in enumerate(sqe):  # 提供索引-值对  
+        if 'xxx' in string:
+            sqe[index] = 'censored'
+跳出循环: break continue  
+
+    [x*x for x in range(10)]  # 列表推导式[]  
+    [x*x for x in range(10) if x%3 == 0]  
+    [(x,y) for x in range(3) for y in range(3)]  
+
+    ##### 字典高效匹配 #####
     #!/usr/bin/python2.7
     girls = ['alice','bernice','clarice','bonie']
     boys = ['chris','arnold','bob','chari']
@@ -222,24 +230,26 @@ $ [(x,y) for x in range(3) for y in range(3)]
     for girl in girls:
        dic_girls.setdefault(girl[0],[]).append(girl)
     print [b+'+'+g for b in boys for g in dic_girls[b[0]]]
-    %%%%%match.py%%%%%
-pass del exec eval
-chr(97) == 'a'
-ord('a') == 97
+
+pass; del;  
+exec "Python语句" in scope;  
+eval('Python表达式', scope)  
+
+
 
 ### Chapter6抽象(参数,作用域,递归)
 def function(para): ...return 创建函数  
 help(functionname)  
-位置参数,关键字参数ie:functionname(形参=值),定义函数时可提供默认值  
+位置参数; 关键字参数:functionname(形参=值),定义函数时可提供默认值  
 当参数具有默认值时,调用函数时可以不提供,提供一些或提供全部参数  
-收集参数 *para收集其余的位置参数,返回元组; **para收集其余的关键字参数,返回字典  
-%%%%%store.py%%%%%用收集参数同时储存多个名字到字典data  
+**收集参数** *para收集其余的位置参数,返回元组; **para收集其余的关键字参数,返回字典  
 
+    ##### 用收集参数同时储存多个名字到字典data #####
     #!/usr/bin/python2.7
     def init(data):
-      data['first'] = {}
-      data['middle'] = {}
-      data['last'] = {}
+        data['first'] = {}
+        data['middle'] = {}
+        data['last'] = {}
     
     def lookup(data, label, name):
     	return data[label].get(name)
@@ -255,29 +265,33 @@ help(functionname)
     				people.append(full_name)
     			else:
     				data[label][name] = [full_name]
-    %%%%%store.py%%%%%
-    $ storage = {}
-    $ init(storage)
-    $ store(storage, 'Luke Skywalker', 'Anakin Skywalker')
+
+    storage = {}
+    init(storage)
+    store(storage, 'Luke Skywalker', 'Anakin Skywalker')
 
 位置参数收集的逆过程(元组)
-$ def add(x, y): return x + y
-$ para = (1, 2)
-$ add(*para)
+
+    def add(x, y): return x + y
+    para = (1, 2)
+    add(*para)
 关键字参数收集的逆过程(字典)  
-$ def hello(P1 = 'hello', P2 = 'world' ): print "%s, %s" % (P1, P2)
-$ Params = {'P1':'Well met', 'P2':'Robin'}  
-$ hello(**Params)  
+
+    def hello(P1 = 'hello', P2 = 'world' ): print "%s, %s" % (P1, P2)
+    Params = {'P1':'Well met', 'P2':'Robin'}
+    hello(**Params)
 vars() globals() 返回全局变量的字典 locals()返回局部变量的字典  
 重绑全局变量:在函数内声明 global para  
-函数式编程:  
-	map(func, seq) 对序列中的每个元素应用函数
-	filter(func, seq) 返回其函数为真的元素的列表
+#### 函数式编程:
+    map(func, seq) 对序列中的每个元素应用函数
+    filter(func, seq) 返回其函数为真的元素的列表
+
+
 
 ### Chapter7更加抽象(类的对象,多态,封装,方法,特性,超类,继承)
-$ from random import choice
-$ x = choice([1,'b',...]) 从非空序列随机选择元素
-repr()函数是多态特征的代表,可以对多种对象进行处理
+$ from random import choice  
+$ x = choice([1,'b',...]) 从非空序列随机选择元素  
+repr()函数是多态特征的代表,可以对多种对象进行处理  
 
     %%%%%class.py%%%%%创建类
     #!/usr/bin/python2.7
@@ -290,33 +304,37 @@ repr()函数是多态特征的代表,可以对多种对象进行处理
     	def greet(self):
     		print "Hello, world! I'm %s" % self.name
     %%%%%class.py%%%%%
-$ foo = Person()
-$ foo.setName('Luke Skywalker') #也可以从外部访问对象的特性
-$ foo.greet()
-%%%%%%%%%%
-class Bird:
-	__song = 'So'
-	def sing(self):
-		print self.__song #私有特征
-%%%%%%%%%%
-class Member():
-	Num = 0 
-	def init(self):
-		Member.Num += 1 #类作用域,可被实例访问
-%%%%%%%%%%
-多重继承: class Subclass(Superclass,...)
-检查继承: issubclass(subclass,superclass)
-	isinstance(object,tuple) 类型检查:tuple,str,dict
-	subclass.__bases__; instance.__class__
-	hasattr(class, 'attr')
-	callable(getattr(class, 'attr', default)) 检查能否调用
-	setattr(class, 'attr', value)
-	class.__dict__ 查看对象所储存的值
+$ foo = Person()  
+$ foo.setName('Luke Skywalker') #也可以从外部访问对象的特性  
+$ foo.greet()  
 
-Chapter8异常(创建,引发自定义异常,处理异常)
-raise Exception('hyperdrive overload') #引发内建异常
-import exceptions; dir(exceptions)
-创建异常: class SomeCustomException(Exception): pass
+    %%%%%%%%%%
+    class Bird:
+        __song = 'So'
+        def sing(self):
+            print self.__song #私有特征
+    %%%%%%%%%%
+    class Member():
+        Num = 0 
+        def init(self):
+            Member.Num += 1 #类作用域,可被实例访问
+    %%%%%%%%%%
+多重继承: class Subclass(Superclass,...)  
+检查继承: issubclass(subclass,superclass)  
+
+    isinstance(object,tuple) 类型检查:tuple,str,dict
+    subclass.__bases__; instance.__class__
+    hasattr(class, 'attr')
+    callable(getattr(class, 'attr', default)) 检查能否调用
+    setattr(class, 'attr', value)
+    class.__dict__ 查看对象所储存的值
+
+
+
+### Chapter8异常(创建,引发自定义异常,处理异常)
+raise Exception('hyperdrive overload') #引发内建异常  
+import exceptions; dir(exceptions)  
+创建异常: class SomeCustomException(Exception): pass  
 %%%%%catcherror.py%%%%%
 while True:
 	try:
