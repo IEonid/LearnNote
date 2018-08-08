@@ -1,6 +1,8 @@
+<center>
 # Python基础教程#
+</center>
 
-### Chapter1 基础知识
+## Chapter1 基础知识
 
     #!/usr/bin/python2.7
     print 'Hello, world!'
@@ -47,7 +49,7 @@ python3.0中，raw_input被重命名为input
 
 
 
-### Chapter2 列表与元组(序列类型)
+## Chapter2 列表与元组(序列类型)
 
 Python中最基本的数据结构是**序列**： **列表、元组**、字符串、Unicode字符串、buffer对象、xrang对象。  
 序列第一个元素索引为0，最后一个元素标记为-1  
@@ -79,27 +81,27 @@ len(序列), max( ), min( )
 
 #### 列表方法:对象.方法(参数)
 
-    seq.append()  # 追加值
-    seq.count()  # 统计某元素
-    seq.extend()  # 追加列表
-    seq.index()  # 找第一个匹配项
+    seq.append()  # 追加值  
+    seq.count()  # 统计某元素  
+    seq.extend()  # 追加列表  
+    seq.index()  # 找第一个匹配项  
     seq.insert(num, seq)  # 插入
     seq.pop(); seq.pop(0) #移除列表中的某个值并返回该值
     seq.remove()  # 移除第一个匹配项
     seq.reverse()  # reversed函数返回迭代器，不修改序列
     seq.sort()由小到大 sorted()函数 sort(cmp) sort(key=len) sort(reverse = true)
+</code>
 
------
 | :-: | :- |
 | seq1 = seq2    | 两个对象将指向同一个列表 |
 | seq1 = seq2[:] | 将列表2拷贝给列表1 |
------
+
 创建单元素元组(42,) 空元组()  
 tuple(seq) 将序列转换成元组  
 
 
 
-### Chapter3 使用字符串
+## Chapter3 使用字符串
 字符串是不可变的,不能分片赋值  
 字符串格式化操作符: %  
 
@@ -135,7 +137,7 @@ ord('a') == 97
 
 
 
-### Chapter4 字典:当索引不好用时
+## Chapter4 字典:当索引不好用时
 
 dictory = {k1:v1, k2:v2, ...} {}创建字典,字典可以相互嵌套  
 
@@ -175,7 +177,7 @@ dictory = {k1:v1, k2:v2, ...} {}创建字典,字典可以相互嵌套
 
 
 
-### Chapter5 条件,循环和其他语句
+## Chapter5 条件,循环和其他语句
 False = 0 None "" () [] {}  
 k, v = d.popitem()  
 x, y, *z = 1, 2, 3, 4  # Python3.0 残项赋值  
@@ -237,7 +239,7 @@ eval('Python表达式', scope)
 
 
 
-### Chapter6抽象(参数,作用域,递归)
+## Chapter6 抽象(参数,作用域,递归)
 def function(para): ...return 创建函数  
 help(functionname)  
 位置参数; 关键字参数:functionname(形参=值),定义函数时可提供默认值  
@@ -288,12 +290,15 @@ vars() globals() 返回全局变量的字典 locals()返回局部变量的字典
 
 
 
-### Chapter7更加抽象(类的对象,多态,封装,方法,特性,超类,继承)
-$ from random import choice  
-$ x = choice([1,'b',...]) 从非空序列随机选择元素  
-repr()函数是多态特征的代表,可以对多种对象进行处理  
+## Chapter7 更加抽象(类的对象,多态,封装,方法,特性,超类,继承)
+from random import choice  
+x = choice([1,'b',...])  # 多态函数，从非空序列随机选择元素  
+repr() 函数是多态特征的代表,可以对多种对象进行处理  
 
-    %%%%%class.py%%%%%创建类
+    def length_message(x):
+        print "The length of", repr(x), "is", len(x)
+
+    ##### 创建类 #####
     #!/usr/bin/python2.7
     _metaclass_ = type #确定使用新式类(直接或间接继承object也是新类)
     class Person:
@@ -303,95 +308,125 @@ repr()函数是多态特征的代表,可以对多种对象进行处理
     		return self.name
     	def greet(self):
     		print "Hello, world! I'm %s" % self.name
-    %%%%%class.py%%%%%
-$ foo = Person()  
-$ foo.setName('Luke Skywalker') #也可以从外部访问对象的特性  
-$ foo.greet()  
 
-    %%%%%%%%%%
+    foo = Person()  
+    foo.setName('Luke Skywalker') #也可以从外部访问对象的特性  
+    foo.greet()  
+
+    ##### 类的私有化特性 #####
     class Bird:
         __song = 'So'
         def sing(self):
-            print self.__song #私有特征
-    %%%%%%%%%%
-    class Member():
-        Num = 0 
+            print self.__song #私有特征，类外无法访问
+
+    class MemberCounter():
+        members = 0  # 类的定义其实就是执行代码块
         def init(self):
-            Member.Num += 1 #类作用域,可被实例访问
-    %%%%%%%%%%
+            MemberCounter.members += 1  # 类作用域,可被所有成员和实例访问
+
+    m1 = MemberCounter()
+    m1.init()  # MemberCounter.members = 1
+    m2 = MemberCounter()
+    m2.init()  # MemberCounter.members = 2
+    print m1.members  # m1.members = 2
+    print m2.members  # m2.members = 2
+    m1.members = 'Two'  # 重绑定members特性
+    print m1.members  # m1.members = 'Two'
+    print m2.members  # m2.members = 2
+
 多重继承: class Subclass(Superclass,...)  
 检查继承: issubclass(subclass,superclass)  
 
-    isinstance(object,tuple) 类型检查:tuple,str,dict
+    isinstance(object, tuple)  # 类型检查:tuple, str, dict
     subclass.__bases__; instance.__class__
-    hasattr(class, 'attr')
-    callable(getattr(class, 'attr', default)) 检查能否调用
+    hasattr(class, 'attr')  # Python3.0
+    callable(getattr(class, 'attr', default))  # Python2.0, 检查能否调用
     setattr(class, 'attr', value)
-    class.__dict__ 查看对象所储存的值
+    class.__dict__  # 查看对象所储存的值
 
 
 
-### Chapter8异常(创建,引发自定义异常,处理异常)
-raise Exception('hyperdrive overload') #引发内建异常  
-import exceptions; dir(exceptions)  
-创建异常: class SomeCustomException(Exception): pass  
-%%%%%catcherror.py%%%%%
-while True:
-	try:
-		x = input('Enter the first number: ')
-		y = input('Enter the second number: ')
-		print x/y
-	except ZeroDivisionError:
-		print "The second number can't be zero!"
-		#(raise) 重新引发已捕捉的异常
-	except ...
-	else:
-		break
-%%%%%catcherror.py%%%%%
-用一个块捕捉多个异常: except(ZeroDivisionError, TypeError):
-捕捉对象: except (ZeroDivisionError,TypeError), e:
-	print e
-引发异常处理 finally: (不管是否异常都要执行,比如清理代码)
+## Chapter8 异常(创建,引发自定义异常,处理异常)
+import exceptions; dir(exceptions)  # 列出异常类列表  
+raise Exception('hyperdrive overload')  # 引发内建异常  
+创建异常类: class SomeCustomException(Exception): pass  
 
-Chapter9魔法方法,属性和迭代器
-构造方法:用来初始化新建对象的状态
-$ class FooBar:
-	def __init__(self):
-		self.somevar = 42
-$ class FooBar:
-	def __init__(self, value = 42):
-		self.somevar = value #可以传递参数
-$ f = FooBar('This is a constructor argument')
+    ##### CatchError #####
+    while True:
+    	try:
+    		x = input('Enter the first number: ')
+    		y = input('Enter the second number: ')
+    		print x/y
+    	except ZeroDivisionError:
+    		print "The second number can't be zero!"
+    		# raise ZeroDivisionError 重新引发已捕捉的异常
+    	except ...
+    	else:
+    		break
+
+用一个块捕捉多个异常: except (ZeroDivisionError, TypeError):  
+异常类全捕捉：except: -- or except Exception, e: -- (有危险，同样会捕捉到用户终止执行的Ctrl+C企图)
+
+    # 捕捉对象:只打印异常，但是程序会继续运行
+    except (ZeroDivisionError,TypeError), e:
+        print e
+
+    # 循环只有在没有发生异常才退出
+    while True：
+        try:
+            x = input('Enter the first number: ')
+            y = input('Enter the second number: ')
+            value = x/y
+            print 'x/y is', value
+        except Exception, e:
+            print 'Invalid input:', e, 'Please try again.'
+        else:
+            break
+
+引发异常处理try: -- finally: -- (不管是否异常都要执行,比如清理代码)  
+
+## Chapter9 魔法方法,属性和迭代器
+构造方法:用来初始化新建对象的状态  
+
+    class FooBar:
+    	def __init__(self):
+    		self.somevar = 42
+    class FooBar:
+    	def __init__(self, value = 42):
+    		self.somevar = value #可以传递参数
+    f = FooBar('This is a constructor argument')
 两种方法调用超类的构造方法拥有超类的初始化代码:
 (1): 调用未绑定的超类构造方法
-class Bird:
-	def __init__(self):
-		self.hungry = True
-	def eat(self):
-		if self.hungry:
-			print 'Aaaah'
-			self.hungry = False
-		else:
-			print 'No, thanks!'
-class SongBird(Bird):
-	def __init__(self):
-		Bird.__init__(self)
-		self.sound = 'Squawk!'
-	def sing(self):
-		print self.sound
+
+    class Bird:
+    	def __init__(self):
+    		self.hungry = True
+    	def eat(self):
+    		if self.hungry:
+    			print 'Aaaah'
+    			self.hungry = False
+    		else:
+    			print 'No, thanks!'
+    class SongBird(Bird):
+    	def __init__(self):
+    		Bird.__init__(self)
+    		self.sound = 'Squawk!'
+    	def sing(self):
+    		print self.sound
 (2): 使用super()函数
-__metaclass__ = type #super函数只在新式类中起作用
-class Bird: omit...
-class SongBird(Bird):
-	def __init__(self):
-		super(SongBird, self).__init__()
-		self.sound = 'Squawk!'
-	def sing(self):
-		print self.sound
-成员访问: __len__(self): #seq.__len__()
-	__getitem__(self, key):
-	__setitem__(self, key, value):
-	__delitem__(self, key):
+
+    __metaclass__ = type #super函数只在新式类中起作用
+    class Bird: omit...
+    class SongBird(Bird):
+    	def __init__(self):
+    		super(SongBird, self).__init__()
+    		self.sound = 'Squawk!'
+    	def sing(self):
+    		print self.sound
+    成员访问: __len__(self): #seq.__len__()
+    	__getitem__(self, key):
+    	__setitem__(self, key, value):
+    	__delitem__(self, key):
 子类化列表,字典和字符串(list)(dict)(string)
 property(fget, fset, fdel可选, doc可选)函数:只在新式类中使用
 
@@ -408,25 +443,26 @@ property(fget, fset, fdel可选, doc可选)函数:只在新式类中使用
 $ r.size = 150, 100
 静态方法: 定义时没有self参数,能被类本身调用
 类成员方法: 定义时需要cls参数,可以用类和其对象调用
-__metaclass__ = type
-class MyClass:
-	@staticmethod #装饰器
-	def smesh():
-		print 'This is a static method'
-	@classmethod
-	def cmeth(cls):
-		print 'This is a class method of', cls
-%%%%%__getattr__,__setattr__%%%%%
-class Rectangle:
-	def __init__(self):
-		self.width = 0
-		self.height = 0
-	def __setattr__(self, name, value):
-		if name == 'size': self.width, self.height = value
-		else: self.__dict__[name] = value
-	def __getattr__(self, name):
-		if name == 'size': return self.width, self.height
-		else: raise AttributeError
+
+    __metaclass__ = type
+    class MyClass:
+    	@staticmethod #装饰器
+    	def smesh():
+    		print 'This is a static method'
+    	@classmethod
+    	def cmeth(cls):
+    		print 'This is a class method of', cls
+    %%%%%__getattr__,__setattr__%%%%%
+    class Rectangle:
+    	def __init__(self):
+    		self.width = 0
+    		self.height = 0
+    	def __setattr__(self, name, value):
+    		if name == 'size': self.width, self.height = value
+    		else: self.__dict__[name] = value
+    	def __getattr__(self, name):
+    		if name == 'size': return self.width, self.height
+    		else: raise AttributeError
 迭代器:具有next方法的对象
 
     class Fibs:
@@ -478,17 +514,18 @@ def flatten(nested): #处理任意层嵌套
     $ list(flatten(['foo', ['bar', ['baz']]]))
 生成器方法: .send()开始运行后为生成器提供新值  
 
-Chapter10自带电池
+## Chapter10 自带电池
 $ sys.path.append('/home/ieonid/Python') #import sys
 import modulename
-%%%%%importtest%%%%%自定义模块中增加测试代码
-#!/usr/bin/env python2.7
-def hello():
-   print 'Hello, world!'
-def test():
-   hello()  
-if __name__ == 'main': test()  
-%%%%%importtest%%%%%  
+
+    %%%%%importtest%%%%%自定义模块中增加测试代码
+    #!/usr/bin/env python2.7
+    def hello():
+       print 'Hello, world!'
+    def test():
+       hello()  
+    if __name__ == 'main': test()  
+    %%%%%importtest%%%%%  
 $ import sys, pprint  
 $ pprint.pprint(sys.path)  
 dir(modulename) #import modulename first!  
@@ -497,14 +534,15 @@ help(module.func): print module.func.__doc__
 print copy.__file__ #源码路径
 os.system('/usr/bin/firefox') #import os
 webbrowser.open('http://www.python.org') #import webbrowser
-%%%%%numberline%%%%%
-#!/usr/bin/env python2.7                           #  1  
-import fileinput                                   #  2  
-for line in fileinput.input(inplace = True):       #  3  
-   line = line.rstrip()                            #  4  
-   num = fileinput.lineno()                        #  5  
-   print '%-50s # %2i' % (line, num)               #  6  
-%%%%%numberline%%%%%
+
+    %%%%%numberline%%%%%
+    #!/usr/bin/env python2.7                           #  1  
+    import fileinput                                   #  2  
+    for line in fileinput.input(inplace = True):       #  3  
+       line = line.rstrip()                            #  4  
+       num = fileinput.lineno()                        #  5  
+       print '%-50s # %2i' % (line, num)               #  6  
+    %%%%%numberline%%%%%
 $ python numberline.py numberline.py
 集合运算set(): omited 
 堆操作函数模块: from heapq import *
@@ -532,9 +570,5 @@ $ pat = r'www\.(.*)\..{3}'
 	m.group(1)  
 $ emphasis_pattern = r'\*([^\*]+)\*'   #贪婪模式  
 	re.sub(emphasis_pattern, r'<em>\1</em>', 'Hello, *world*!')  
-
-
-
-
 
 
