@@ -385,17 +385,20 @@ raise Exception('hyperdrive overload')  # 引发内建异常
 
 引发异常处理try: -- finally: -- (不管是否异常都要执行,比如清理代码)  
 
-## Chapter9 魔法方法,属性和迭代器
-构造方法:用来初始化新建对象的状态  
+
+
+## Chapter9 __ 魔法方法 __,属性和迭代器
+
+在类中实现魔方方法，那么python会根据名字在特殊情况下调用该方法，而几乎没有直接调用它们的必要。  
+构造方法 __ init __ :用来初始化新建对象的状态  
+析构方法 __ del __
 
     class FooBar:
-    	def __init__(self):
-    		self.somevar = 42
-    class FooBar:
     	def __init__(self, value = 42):
-    		self.somevar = value #可以传递参数
+    		self.somevar = value  # 可以传递参数
     f = FooBar('This is a constructor argument')
-两种方法调用超类的构造方法拥有超类的初始化代码:
+
+#### 两种方法调用超类的构造方法拥有超类的初始化代码:  
 (1): 调用未绑定的超类构造方法
 
     class Bird:
@@ -415,20 +418,34 @@ raise Exception('hyperdrive overload')  # 引发内建异常
     		print self.sound
 (2): 使用super()函数
 
-    __metaclass__ = type #super函数只在新式类中起作用
-    class Bird: omit...
+    __metaclass__ = type  # super函数只在新式类中起作用
+    # class Bird: omit...
     class SongBird(Bird):
     	def __init__(self):
     		super(SongBird, self).__init__()
     		self.sound = 'Squawk!'
     	def sing(self):
     		print self.sound
-    成员访问: __len__(self): #seq.__len__()
-    	__getitem__(self, key):
-    	__setitem__(self, key, value):
-    	__delitem__(self, key):
-子类化列表,字典和字符串(list)(dict)(string)
-property(fget, fset, fdel可选, doc可选)函数:只在新式类中使用
+
+序列和映射是对象的集合。为了实现新序列或集合类的基本行为，如果对象是不可变的，那么就需要使用2个魔方方法，如果是可变的则需要使用4个魔方方法:
+
+| :- | :- |
+| __ *len* __ (self)                 | 返回集合中所含项目的数量 |
+| __ *getitem* __ (self, key)        | 返回所给键对应的值 |
+| __ *setitem* __ (self, key, value) | 按一定方式存储和key相关的值 |
+| __ *delitem* __ (self, key)        | 按给定键删除键 |
+    
+为了让自己的列表和映射具有多态性，而不需要重定义所有的魔方方法，可以子类化列表,字典和字符串(list, dict, string)  
+
+    class CounterList(list):
+        def __init__(self, *args):
+            super(CounterList, self).__init__(*args)
+            self.counter = 0
+        def __getitem__(self, index):
+            self.counter += 1  # 每次列表访问元素时自增
+            return super(CounterList, self).__getitem__(index)
+
+property (fget, fset, fdel可选, doc可选) 函数:只在新式类中使用
 
     __metaclass__ = type
     class Rectangle:
@@ -439,20 +456,37 @@ property(fget, fset, fdel可选, doc可选)函数:只在新式类中使用
     		self.width, self.height = size
     	def getSize(self):
     		return self.width, self.height
-    	size = property(getSize, setSize)
-$ r.size = 150, 100
-静态方法: 定义时没有self参数,能被类本身调用
-类成员方法: 定义时需要cls参数,可以用类和其对象调用
+    	size = property(getSize, setSize)  # 构造新属性
+
+    r.size = 150, 100
+
+**静态方法**和**类成员方法**分别在创建时被装入staticmethod类型和classmethod类型的对象中  
+
+| :-: | :- |
+| 静态方法   | 定义时没有self参数,只能被类本身调用 |
+| 类成员方法 | 定义时需要cls参数,可以用类和其对象调用 |
 
     __metaclass__ = type
     class MyClass:
-    	@staticmethod #装饰器
+    	@staticmethod  # Python2.4装饰器,可不加
     	def smesh():
     		print 'This is a static method'
     	@classmethod
     	def cmeth(cls):
     		print 'This is a class method of', cls
-    %%%%%__getattr__,__setattr__%%%%%
+
+    MyClass.smeth()  # This is a static method
+    MyClass.cmeth()  # This is a class method of <class '__main__.MyClass'>
+
+为了在访问对象特性的时候可以执行自定义代码，必须使用一些魔方方法
+
+| :- | :- |
+| __ *getattribute* __ (self, name)   | 当特性name被访问时被自动调用(只能在新式类中使用) |
+| __ *getattr* __ (self, name)        | 当特性name被访问且对象没有相应特性时被自动调用 |
+| __ *setattr* __ (self, name, value) | 当试图给特性name赋值时会被自动调用 |
+| __ *delattr* __ (self, name)        | 当试图删除特性name时被自动调用 |
+
+    ##### __getattr__, __setattr__ #####
     class Rectangle:
     	def __init__(self):
     		self.width = 0
@@ -463,9 +497,10 @@ $ r.size = 150, 100
     	def __getattr__(self, name):
     		if name == 'size': return self.width, self.height
     		else: raise AttributeError
-迭代器:具有next方法的对象
 
-    class Fibs:
+__ iter __ 方法会返回一个**迭代器**，迭代器就是具有next方法(该方法只需要self参数)的对象  # Python3.0为 __ next __ 方法
+
+    class Fibs:  # 斐波那契数列
     	def __init__(self):
     		self.a = 0
     		self.b = 1
@@ -475,35 +510,42 @@ $ r.size = 150, 100
     		return self.a
     	def __iter__(self):
     		return self
-$ fibs = Fibs() #list(fibs) 将迭代器转成列表
-$ for f in fibs:
-	if f > 100:
-		print f
-		break
-生成器
-def flatten(nested): #只能处理两层嵌套
-	for sublist in nested:  
-		for element in sublist:  
-			yield element  
-$ nested = [[1,2],[3,4],[5]]  
-$ for num in flatten(nested):  
-	print num  
-$ list(flatten(nested))  
-列表推导式(chapter5)返回列表  
-生成器推导式返回生成器
-递归生成器: 对于字符串嵌套会引发无穷递归
-def flatten(nested): #处理任意层嵌套
-	try:
-		for sublist in nested:
-			for element in flatten(sublist):
-				yield element
-	except TypeError:
-		yield nested
+
+    fibs = Fibs()  # print list(fibs) 将迭代器转成列表  
+    for f in fibs:
+        if f > 100:
+            print f
+            break
+
+**生成器**是一种用普通的函数语法定义的迭代器  
+任何包含**yield语句**的函数称为生成器，每次用yield语句产生一个值，函数就会被冻结：即函数停在那个点等待被重新唤醒。
+当生成器函数被调用时，函数体的代码不会被执行，而会返回一个迭代器。每次请求一个值时，就会执行生成器中的代码，直到遇到一个yield或者return语句。yield语句意味着应该生成一个值。return语句意味着生成器要停止执行，不再生成任何东西。
+
+    def flatten(nested):  # 生成器函数
+    	for sublist in nested:  
+    		for element in sublist:  
+    			yield element  
+
+    nested = [[1,2],[3,4],[5]]  
+    for num in flatten(nested):  
+    	print num  
+    list(flatten(nested))  
+
+**递归生成器**: 对于字符串嵌套会引发无穷递归  
+
+    def flatten(nested):  # 处理任意层嵌套
+    	try:
+    		for sublist in nested:
+    			for element in flatten(sublist):
+    				yield element
+    	except TypeError:
+    		yield nested
+
 加入检查语句的生成器:
 
     def flatten(nested):
     	try:
-    		try: nested + ' '
+    		try: nested + ' '  # 检查是否为字符串
     		except TypeError: pass
     		else: raise TypeError
     		for sublist in nested:
@@ -514,26 +556,38 @@ def flatten(nested): #处理任意层嵌套
     $ list(flatten(['foo', ['bar', ['baz']]]))
 生成器方法: .send()开始运行后为生成器提供新值  
 
-## Chapter10 自带电池
-$ sys.path.append('/home/ieonid/Python') #import sys
-import modulename
+    def repeater(value):
+        while True:
+            new = (yield value)
+            if new is not None: value = new
 
-    %%%%%importtest%%%%%自定义模块中增加测试代码
+    r = repeater(42)
+    r.next()  # 42
+    r.send("Hello, world!")  # "Hello, world!"
+
+
+
+## Chapter10 自带电池
+
+sys.path.append('/home/ieonid/Python')  # 全路径  
+import usermodulename  # 第一次导入自定义模块时执行代码，并产生.pyc文件
+
+    ##### 自定义模块中增加测试代码 #####
     #!/usr/bin/env python2.7
     def hello():
        print 'Hello, world!'
     def test():
        hello()  
     if __name__ == 'main': test()  
-    %%%%%importtest%%%%%  
+
 $ import sys, pprint  
 $ pprint.pprint(sys.path)  
-dir(modulename) #import modulename first!  
-__all__变量: from modulename import *  
+dir(modulename)  # import modulename first!  
+__ all __ 变量: from modulename import *  
 help(module.func): print module.func.__doc__
-print copy.__file__ #源码路径
-os.system('/usr/bin/firefox') #import os
-webbrowser.open('http://www.python.org') #import webbrowser
+print copy.__file__ #源码路径  
+os.system('/usr/bin/firefox')  
+webbrowser.open('http://www.python.org')  # import webbrowser
 
     %%%%%numberline%%%%%
     #!/usr/bin/env python2.7                           #  1  
@@ -543,12 +597,13 @@ webbrowser.open('http://www.python.org') #import webbrowser
        num = fileinput.lineno()                        #  5  
        print '%-50s # %2i' % (line, num)               #  6  
     %%%%%numberline%%%%%
-$ python numberline.py numberline.py
-集合运算set(): omited 
-堆操作函数模块: from heapq import *
-双端队列模块: from collections import deque
-time模块, random模块
-正则表达式re:可以匹配文本片段的模式
+
+$ python numberline.py numberline.py  
+集合运算set(): omited  
+堆操作函数模块: from heapq import *  
+双端队列模块: from collections import deque  
+time模块, random模块  
+正则表达式re:可以匹配文本片段的模式  
 	compile(pattern[, flags]) #根据包含正则表达式的字符串创建模式对象  
 	search(pattern, string[, flags]) #寻找第一个匹配的子字符串,返回布尔值  
 	match(pattern, string[, falgs]) #在开头匹配正则表达式,返回布尔值  
