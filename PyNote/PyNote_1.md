@@ -569,7 +569,7 @@ __ iter __ 方法会返回一个**迭代器**，迭代器就是具有next方法(
 
 ## Chapter10 自带电池
 
-sys.path.append('/home/ieonid/Python')  # 全路径  
+sys.path.append('/home/ieonid/Python')  # 应包含用户模块的全路径  
 import usermodulename  # 第一次导入自定义模块时执行代码，并产生.pyc文件
 
     ##### 自定义模块中增加测试代码 #####
@@ -580,50 +580,70 @@ import usermodulename  # 第一次导入自定义模块时执行代码，并产�
        hello()  
     if __name__ == 'main': test()  
 
-$ import sys, pprint  
-$ pprint.pprint(sys.path)  
-dir(modulename)  # import modulename first!  
-__ all __ 变量: from modulename import *  
-help(module.func): print module.func.__doc__
-print copy.__file__ #源码路径  
-os.system('/usr/bin/firefox')  
-webbrowser.open('http://www.python.org')  # import webbrowser
+import sys, pprint  
+pprint.pprint(sys.path)  
+import copy; dir(copy)  # 列出模块包含的内容,包含copy.__all__  
+__ all __ 变量定义了模块的公有接口，即 "from modulename import *"所导入的函数  
+help(module.func)  
+print module.func.__doc__  
+print copy.__file__  # 打印源码路径  
+os.system('/usr/bin/firefox')  # 启动可执行程序  
+import webbrowser; webbrowser.open('http://www.python.org')  
 
-    %%%%%numberline%%%%%
-    #!/usr/bin/env python2.7                           #  1  
-    import fileinput                                   #  2  
-    for line in fileinput.input(inplace = True):       #  3  
-       line = line.rstrip()                            #  4  
-       num = fileinput.lineno()                        #  5  
-       print '%-50s # %2i' % (line, num)               #  6  
-    %%%%%numberline%%%%%
+    ##### numberline #####
+    #!/usr/bin/env python2.7                           #  1
+    import fileinput                                   #  2
+    for line in fileinput.input(inplace = True):       #  3
+       line = line.rstrip()                            #  4
+       num = fileinput.lineno()                        #  5
+       print '%-50s # %2i' % (line, num)               #  6
 
-$ python numberline.py numberline.py  
+    python numberline.py numberline.py  
+
 集合运算set(): omited  
 堆操作函数模块: from heapq import *  
 双端队列模块: from collections import deque  
 time模块, random模块  
-正则表达式re:可以匹配文本片段的模式  
-	compile(pattern[, flags]) #根据包含正则表达式的字符串创建模式对象  
-	search(pattern, string[, flags]) #寻找第一个匹配的子字符串,返回布尔值  
-	match(pattern, string[, falgs]) #在开头匹配正则表达式,返回布尔值  
-	split(pattern, string[, maxsplit=0]) #返回列表  
-	findall(pattern, string) #返回列表  
-	sub(pat, repl, string[, count=0]) #pat是用compile创建的模式对象  
-	escape(string) #$ re.escape('www.python.org')  
+**正则表达式模块re**:可以匹配文本片段的模式  
+
+| :-: | :-: | :- |
+| .    | 单字符通配符 | 
+| \    | 转义字符     | 'python\\\\.org' 匹配 python.org(需要经过解释器和re模块转义两次)
+| [ ]  | 字符集       | '[abc]' 或 '[a-zA-Z0-9]' 多范围联合匹配
+| [^ ] | 反转字符集   | '[^abc]' 匹配任何除了a、b、c之外的字符
+| ( l )| 选择符       | 'p(ython l erl)' 匹配python或perl
+| ( )? | 可选项符     | r'(http://)?(www\\.)?python\\.org' 原始字符串中仍需对特殊符号进行一次转义
+| ( )*      |     | 允许模式重复0次或多次
+| ( )+      |     | 允许模式重复1次或多次
+| ( ){m, n} |     | 允许模式重复m~n次
+
+**re模块中一些重要的函数**  
+
+| :- | :- |
+|compile(pattern[, flags]) | 根据包含正则表达式的字符串创建模式对象，以实现更有效率的匹配  
+|search(pattern, string[, flags]) | 寻找第一个匹配的子字符串,返回布尔值  
+|match(pattern, string[, falgs]) | 仅在开头匹配正则表达式,返回布尔值  
+|split(pattern, string[, maxsplit=0]) | 返回列表  
+|findall(pattern, string) | 返回列表  
+|sub(pat, repl, string[, count=0]) | 将pat替换为repl,pat是用compile创建的模式对象  
+|escape(string) | 将字符串中所有特殊正则表达式 re.escape('www.python.org')  
+
 	re.search(pat, string) equal pat.search(string)  
-$ some_text = 'alpha, beta,,,gamma delta'  
-	re.split('[, ]+', some_text) #中括号;若为小括号,列表包含小括号内的字符组合
+
+    some_text = 'alpha, beta,,,gamma delta'  
+	re.split('[, ]+', some_text)  # 中括号;若为小括号,列表包含小括号内的字符组合
 	re.findall('[a-z]+',some_text)  
-re匹配对象的方法:(匹配对象和组)  
+
+    # re匹配对象的方法:(匹配对象和组)  
 	group([group1, ...])  
 	start([group]) #return start index  
 	end([group]) #return end index  
 	span([group])  
-$ pat = r'www\.(.*)\..{3}'  
+
+    pat = r'www\.(.*)\..{3}'  
 	m = re.match(pat, 'www.python.org') # m is a MatchObject  
 	m.group(1)  
-$ emphasis_pattern = r'\*([^\*]+)\*'   #贪婪模式  
-	re.sub(emphasis_pattern, r'<em>\1</em>', 'Hello, *world*!')  
 
+    emphasis_pattern = r'\*([^\*]+)\*'   #贪婪模式  
+	re.sub(emphasis_pattern, r'<em>\1</em>', 'Hello, *world*!')  
 
