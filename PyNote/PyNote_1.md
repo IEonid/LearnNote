@@ -585,7 +585,7 @@ pprint.pprint(sys.path)
 import copy; dir(copy)  # 列出模块包含的内容,包含copy.__all__  
 __ all __ 变量定义了模块的公有接口，即 "from modulename import *"所导入的函数  
 help(module.func)  
-print module.func.__doc__  
+print module.func.__doc__  # 打印说明文档  
 print copy.__file__  # 打印源码路径  
 os.system('/usr/bin/firefox')  # 启动可执行程序  
 import webbrowser; webbrowser.open('http://www.python.org')  
