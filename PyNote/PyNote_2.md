@@ -174,7 +174,6 @@ Python流行的GUI工具包
     import sqlite3
     import sys
     
-    
     if __name__ == '__main__':
         conn = sqlite3.connect('food.db')
         curs = conn.cursor()
