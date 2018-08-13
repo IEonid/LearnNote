@@ -124,3 +124,68 @@ Python流行的GUI工具包
 
 ## Chapter13 数据库支持(基于关系数据库SQL的DB API)
 
+    ##### importdata.py #####
+    #!/usr/bin/python
+    # -*- coding: utf-8 -*-
+    import sqlite3
+    # SQLite: 小型的嵌入式SQL数据库， 速度快易于使用，并且不需要建立单独的服务器
+    
+    def convert(value):
+        if value.startswith('~'):
+            return value.strip('~')
+        if not value:
+            value = None
+            return value
+        return float(value)
+    
+    if __name__ == '__main__':
+        conn = sqlite3.connect('food.db')
+        curs = conn.cursor()
+        curs.execute('''
+        CREATE TABLE food (
+            id      TEXT        PRIMARY KEY,
+            desc    TEXT,
+            water   FLOAT,
+            kcal    FLOAT,
+            protein FLOAT,
+            fat     FLOAT,
+            ash     FLOAT,
+            carbs   FLOAT,
+            fiber   FLOAT,
+            sugar   FLOAT
+        )
+        ''')
+        query = 'INSERT INTO food VALUES (?,?,?,?,?,?,?,?,?,?)'
+        # 使用了paramstyle的问号版本，也就是会使用问号作为字段标记
+        field_count = 10
+    
+        for line in open('ABBREV.txt'):
+            fields = line.split('^')
+            vals = [convert(f) for f in fields[:field_count]]
+            curs.execute(query, vals)
+    
+        conn.commit()
+        conn.close()
+</code>
+
+    ##### food_query #####
+    #!/usr/bin/python
+    # -*- coding: utf-8 -*-
+    import sqlite3
+    import sys
+    
+    
+    if __name__ == '__main__':
+        conn = sqlite3.connect('food.db')
+        curs = conn.cursor()
+    
+        query = 'SELECT * FROM food WHERE %s' % sys.argv[1]
+        curs.execute(query)
+        names = [f[0] for f in curs.description]
+        for row in curs.fetchall():
+            for pair in zip(names, row):
+                print('%s: %s' % pair)
+    
+        # python food_query.py "kcal <= 100 AND fiber >= 10 ORDER BY sugar"
+        # python food_query.py "kcal <= 100 AND fiber >= 10 AND sugar ORDER BY sugar"
+    
